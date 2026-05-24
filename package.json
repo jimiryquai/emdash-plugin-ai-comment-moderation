@@ -1,0 +1,20 @@
+{
+  "name": "emdash-plugin-ai-comment-moderation",
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./sandbox": "./src/sandbox-entry.ts"
+  },
+  "scripts": {
+    "test": "vitest run"
+  },
+  "peerDependencies": {
+    "emdash": "^0.9.0"
+  },
+  "devDependencies": {
+    "emdash": "^0.9.0",
+    "typescript": "^5.5.3",
+    "vitest": "^4.1.7"
+  }
+}

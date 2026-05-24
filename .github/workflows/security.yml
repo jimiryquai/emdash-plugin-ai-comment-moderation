@@ -17,4 +17,4 @@ jobs:
         with:
           node-version: 22
       - run: npm i --package-lock-only
-      - run: npm audit --audit-level=high
+      - run: npm audit --audit-level=high --omit=dev

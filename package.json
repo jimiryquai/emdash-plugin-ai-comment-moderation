@@ -33,5 +33,13 @@
     "vite": "^8.0.0",
     "vitest": "^4.1.7"
   },
-  "main": "./dist/index.mjs"
+  "main": "./dist/index.mjs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jimiryquai/emdash-plugin-ai-comment-moderation.git"
+  },
+  "homepage": "https://github.com/jimiryquai/emdash-plugin-ai-comment-moderation#readme",
+  "bugs": {
+    "url": "https://github.com/jimiryquai/emdash-plugin-ai-comment-moderation/issues"
+  }
 }

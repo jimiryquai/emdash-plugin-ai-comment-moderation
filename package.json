@@ -1,24 +1,46 @@
 {
   "name": "emdash-plugin-ai-comment-moderation",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "type": "module",
   "exports": {
-    ".": "./src/index.ts",
-    "./sandbox": "./src/sandbox-entry.ts"
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
+    },
+    "./sandbox": "./dist/plugin.mjs"
   },
   "files": [
-    "src/",
+    "dist/",
+    "emdash-plugin.jsonc",
     "README.md"
   ],
   "scripts": {
-    "test": "vitest run"
+    "test": "vitest run",
+    "validate": "emdash-plugin validate",
+    "build": "emdash-plugin build",
+    "prepack": "npm run build",
+    "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
-    "emdash": "^0.9.0"
+    "emdash": "^1.4.0"
   },
   "devDependencies": {
-    "emdash": "^0.9.0",
-    "typescript": "^5.5.3",
+    "@emdash-cms/plugin-cli": "0.13.5",
+    "@emdash-cms/plugin-test": "0.2.11",
+    "@types/node": "^22.20.5",
+    "emdash": "1.4.0",
+    "typescript": "^5.9.0",
+    "vite": "^8.0.0",
     "vitest": "^4.1.7"
-  }
+  },
+  "main": "./dist/index.mjs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jimiryquai/emdash-plugin-ai-comment-moderation.git"
+  },
+  "homepage": "https://github.com/jimiryquai/emdash-plugin-ai-comment-moderation#readme",
+  "bugs": {
+    "url": "https://github.com/jimiryquai/emdash-plugin-ai-comment-moderation/issues"
+  },
+  "license": "MIT"
 }

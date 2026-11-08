@@ -2,12 +2,12 @@ import { describe, it, expect } from "vitest";
 import plugin, {
   parseModerationResponse,
   fallbackModeration
-} from "../src/sandbox-entry";
+} from "../src/plugin";
 import type {
   CommentModerateEvent,
-  PluginContext,
-  ModerationDecision
-} from "emdash";
+  PluginContext
+} from "emdash/plugin";
+import type { ModerationDecision } from "emdash";
 
 // =============================================================================
 // Fakes
@@ -251,7 +251,7 @@ describe("Plugin comment:moderate hook integration", () => {
     const result = await handler(event, ctx);
     // falls back to first-time pending because priorApprovedCount = 0
     expect(result.status).toBe("pending");
-    expect(event.metadata.ai_moderation?.decision).toBe("pending");
+    expect(event.metadata.ai_moderation).toMatchObject({ decision: "pending" });
     expect(http.lastRequest).toBeNull();
   });
 
@@ -307,7 +307,7 @@ describe("Plugin comment:moderate hook integration", () => {
 
     const result = await handler(event, ctx);
     expect(result.status).toBe("spam");
-    expect(event.metadata.ai_moderation?.decision).toBe("spam");
+    expect(event.metadata.ai_moderation).toMatchObject({ decision: "spam" });
   });
 
   it("should hold toxic comments as pending", async () => {
@@ -326,7 +326,7 @@ describe("Plugin comment:moderate hook integration", () => {
 
     const result = await handler(event, ctx);
     expect(result.status).toBe("pending");
-    expect(event.metadata.ai_moderation?.decision).toBe("pending");
+    expect(event.metadata.ai_moderation).toMatchObject({ decision: "pending" });
   });
 
   it("should fall back if Cloudflare AI returns HTTP error status", async () => {

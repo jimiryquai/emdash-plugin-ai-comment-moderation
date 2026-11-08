@@ -17,4 +17,11 @@ jobs:
         with:
           node-version: 22
           registry-url: https://registry.npmjs.org
+      - run: npm ci
+      - run: npm run validate
+      - run: npx tsc --noEmit
+      - run: npx vitest run
+      # Trusted publishing (OIDC) needs npm 11.5.1 or later; Node 22 bundles npm 10,
+      # which never attempts the OIDC login and gets a 404 from the registry.
+      - run: npm install -g npm@11.21.1
       - run: npm publish --provenance --access public

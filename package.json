@@ -41,5 +41,6 @@
   "homepage": "https://github.com/jimiryquai/emdash-plugin-ai-comment-moderation#readme",
   "bugs": {
     "url": "https://github.com/jimiryquai/emdash-plugin-ai-comment-moderation/issues"
-  }
+  },
+  "license": "MIT"
 }

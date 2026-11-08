@@ -18,9 +18,9 @@ only version source; the CLI derives the descriptor and runtime manifest from it
 The publish job installs dependencies and runs validation, typechecking, and tests;
 `prepack` builds the distributable `dist/` files before npm packs the release.
 
-The manifest uses `UNLICENSED` because the existing package declares no license;
-this migration does not grant new license rights. Its publisher field is the site
-domain `jamesryan.dev`; Atmosphere account ownership has not been checked. npm
+James chose MIT on 2026-11-08; the package and manifest declare MIT, with the
+full grant in `LICENSE`. Its publisher field is the site domain `jamesryan.dev`;
+Atmosphere account ownership has not been checked. npm
 distribution does not use it; confirm the publisher before any future registry release.
 
 Only after publish approval:

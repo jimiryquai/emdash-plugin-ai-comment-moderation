@@ -116,3 +116,7 @@ bindings, real Workers AI classifications, or live credentials. No staging site
 was contacted; a live staging check remains for the site's deployment work.
 
 See [RELEASING.md](./RELEASING.md) for the npm release process and approval boundary.
+
+## Licence
+
+[MIT](./LICENSE) © 2026 James Ryan.

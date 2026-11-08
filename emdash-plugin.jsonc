@@ -2,7 +2,7 @@
   "$schema": "./node_modules/@emdash-cms/plugin-cli/schemas/emdash-plugin.schema.json",
   "slug": "ai-comment-moderation",
   "publisher": "jamesryan.dev",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "author": { "name": "James Ryan", "url": "https://jamesryan.dev" },
   "security": { "url": "https://github.com/jimiryquai/emdash-plugin-ai-comment-moderation/security" },
   "name": "AI Comment Moderation",

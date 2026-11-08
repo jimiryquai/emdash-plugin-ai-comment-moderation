@@ -1,24 +1,36 @@
 {
   "name": "emdash-plugin-ai-comment-moderation",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "type": "module",
   "exports": {
-    ".": "./src/index.ts",
-    "./sandbox": "./src/sandbox-entry.ts"
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
+    },
+    "./sandbox": "./dist/plugin.mjs"
   },
   "files": [
-    "src/",
+    "dist/",
+    "emdash-plugin.jsonc",
     "README.md"
   ],
   "scripts": {
-    "test": "vitest run"
+    "test": "vitest run",
+    "validate": "emdash-plugin validate",
+    "build": "emdash-plugin build",
+    "prepack": "npm run build",
+    "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
-    "emdash": "^0.9.0"
+    "emdash": "^1.4.0"
   },
   "devDependencies": {
-    "emdash": "^0.9.0",
-    "typescript": "^5.5.3",
-    "vitest": "^4.1.7"
-  }
+    "emdash": "1.4.0",
+    "typescript": "^5.9.0",
+    "vitest": "^4.1.7",
+    "@emdash-cms/plugin-cli": "0.13.5",
+    "@emdash-cms/plugin-test": "0.2.11",
+    "vite": "^8.0.0"
+  },
+  "main": "./dist/index.mjs"
 }

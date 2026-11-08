@@ -1,0 +1,14 @@
+{
+  "$schema": "./node_modules/@emdash-cms/plugin-cli/schemas/emdash-plugin.schema.json",
+  "slug": "ai-comment-moderation",
+  "publisher": "jamesryan.dev",
+  "license": "UNLICENSED",
+  "author": { "name": "James Ryan", "url": "https://jamesryan.dev" },
+  "security": { "url": "https://github.com/jimiryquai/emdash-plugin-ai-comment-moderation/security" },
+  "name": "AI Comment Moderation",
+  "description": "Comment spam and toxicity detection using Cloudflare Workers AI, with EmDash moderation fallback.",
+  "repo": "https://github.com/jimiryquai/emdash-plugin-ai-comment-moderation",
+  "capabilities": ["network:request", "users:read"],
+  "allowedHosts": ["api.cloudflare.com"],
+  "storage": {}
+}

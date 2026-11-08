@@ -4,6 +4,27 @@ This plugin auto-publishes to npm when a GitHub release is created.
 
 ## Steps
 
+Release preparation ends with an open pull request against `master`, passing CI,
+and James's approval pending. Do not tag, publish a GitHub release, or run
+`npm publish` until James approves publishing. A published GitHub release triggers
+the npm publish workflow automatically.
+
+The EmDash 1.4 migration is **2.0.0**: raising the peer dependency from `^0.9.0`
+to `^1.4.0` removes supported consumers, and installation now uses a default
+descriptor in `sandboxed` rather than the old named factory. Both are breaking.
+
+Commit `package-lock.json`; npm is the CI package manager. `package.json` is the
+only version source; the CLI derives the descriptor and runtime manifest from it.
+The publish job installs dependencies and runs validation, typechecking, and tests;
+`prepack` builds the distributable `dist/` files before npm packs the release.
+
+The manifest uses `UNLICENSED` because the existing package declares no license;
+this migration does not grant new license rights. Its publisher field is the site
+domain `jamesryan.dev`; Atmosphere account ownership has not been checked. npm
+distribution does not use it; confirm the publisher before any future registry release.
+
+Only after publish approval:
+
 1. **Bump the version**
 
    ```bash
@@ -12,7 +33,8 @@ This plugin auto-publishes to npm when a GitHub release is created.
    npm version major   # breaking change: 1.0.0 → 2.0.0
    ```
 
-   This updates `package.json` and creates a git tag automatically.
+   This updates `package.json` and creates a git tag automatically. If the release
+   PR already bumped the version, do not bump it again: tag the approved commit instead.
 
 2. **Push the commit and tag**
 

@@ -15,5 +15,8 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 22
-      - run: npm install emdash typescript
+      - run: npm install
       - run: npx tsc --noEmit
+      - run: npm run validate
+      - run: npm run build
+      - run: npm pack --dry-run

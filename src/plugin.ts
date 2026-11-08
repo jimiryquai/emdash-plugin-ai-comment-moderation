@@ -1,9 +1,9 @@
-import {
-  definePlugin,
-  type CommentModerateEvent,
-  type ModerationDecision,
-  type PluginContext
-} from "emdash";
+import type {
+  SandboxedPlugin,
+  CommentModerateEvent,
+  PluginContext
+} from "emdash/plugin";
+import type { ModerationDecision } from "emdash";
 
 const DEFAULT_MODEL = "@cf/meta/llama-3.1-8b-instruct";
 const MAX_BODY_LENGTH = 10_000;
@@ -144,10 +144,10 @@ async function moderateWithAI(
   }
 }
 
-export default definePlugin({
+const plugin = {
   hooks: {
     "plugin:install": {
-      handler: async (_event: Record<string, never>, ctx: PluginContext) => {
+      handler: async (_event, ctx) => {
         const existingModel = await ctx.kv.get<string>("settings:model");
         if (!existingModel) {
           await ctx.kv.set("settings:model", DEFAULT_MODEL);
@@ -175,4 +175,6 @@ export default definePlugin({
       }
     }
   }
-});
+} satisfies SandboxedPlugin;
+
+export default plugin;

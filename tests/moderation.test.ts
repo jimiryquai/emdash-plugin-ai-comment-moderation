@@ -56,6 +56,10 @@ class FakeHttp {
 function createFakeContext(kv: FakeKV, http: FakeHttp): PluginContext {
   return {
     kv,
+    settings: {
+      get: <T>(key: string) => kv.get<T>(`settings:${key}`),
+      set: (key: string, value: unknown) => kv.set(`settings:${key}`, value)
+    },
     http,
     log: {
       debug: () => {},

@@ -5,7 +5,7 @@ A sandboxed EmDash 1.4 plugin for comment moderation using Cloudflare Workers AI
 ## Features
 
 - **Spam & Toxicity Detection**: Analyzes comments to identify spam and toxic content.
-- **KV-Driven Configuration**: Settings are stored in EmDash's Key-Value store. No environment variables required.
+- **Admin Configuration**: Configure the account, encrypted API token, and model in the EmDash settings page.
 - **Fail-safe Fallback**: Replicates EmDash's built-in 4-step moderation logic if the Cloudflare AI is unavailable or unconfigured.
 
 ## Installation
@@ -14,7 +14,7 @@ Add the plugin to your `astro-blog` (or other EmDash-powered project):
 
 ```json
 "dependencies": {
-  "emdash-plugin-ai-comment-moderation": "^2.0.0"
+  "emdash-plugin-ai-comment-moderation": "^2.1.0"
 }
 ```
 
@@ -53,16 +53,21 @@ For local development, run `npm install` and `npm run build` here, then install
 
 ## Configuration
 
-Seed or set the following keys in your plugin's KV store:
+Before entering a token, configure the site's `EMDASH_ENCRYPTION_KEY` and keep
+the key backed up in a secret manager separately from the database. See
+[EmDash's secrets guide](https://docs.emdashcms.com/deployment/secrets/).
 
-- `settings:accountId`: Your Cloudflare Account ID.
-- `settings:apiToken`: Your Cloudflare API Token (with access to Workers AI).
-- `settings:model`: (Optional) The Cloudflare Workers AI model to run. Defaults to `@cf/meta/llama-3.1-8b-instruct` (seeded during installation).
+Open the plugin's settings page in the EmDash admin and set:
 
-In EmDash 1.4, `ctx.kv` keys starting with `settings:` read through the canonical
-plugin settings store (with legacy KV fallback); writes go to settings. When
-seeding with the test host, use `fixtures.plugin.setting("accountId", ...)`,
-`fixtures.plugin.setting("apiToken", ...)`, and `fixtures.plugin.setting("model", ...)`.
+- **Cloudflare account ID**: Your Cloudflare Account ID.
+- **Workers AI API token**: A Cloudflare API token with access to Workers AI.
+  EmDash encrypts this secret at rest.
+- **Workers AI model**: Optional; defaults to `@cf/meta/llama-3.1-8b-instruct`.
+
+Existing settings remain readable after upgrading. A token saved before this
+schema was declared may be stored in plaintext: enter and save it again in the
+settings page to encrypt it. The model default is also applied when no value is
+stored.
 
 ## Moderation Logic
 

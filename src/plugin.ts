@@ -69,9 +69,9 @@ async function moderateWithAI(
   ctx: PluginContext,
   event: CommentModerateEvent
 ): Promise<ModerationDecision> {
-  const accountId = await ctx.kv.get<string>("settings:accountId");
-  const apiToken = await ctx.kv.get<string>("settings:apiToken");
-  const model = (await ctx.kv.get<string>("settings:model")) || DEFAULT_MODEL;
+  const accountId = await ctx.settings.get<string>("accountId");
+  const apiToken = await ctx.settings.get<string>("apiToken");
+  const model = (await ctx.settings.get<string>("model")) || DEFAULT_MODEL;
 
   if (!accountId || !apiToken) {
     ctx.log.warn("Cloudflare AI accountId or apiToken not configured. Falling back to default moderator.");
@@ -148,9 +148,9 @@ const plugin = {
   hooks: {
     "plugin:install": {
       handler: async (_event, ctx) => {
-        const existingModel = await ctx.kv.get<string>("settings:model");
+        const existingModel = await ctx.settings.get<string>("model");
         if (!existingModel) {
-          await ctx.kv.set("settings:model", DEFAULT_MODEL);
+          await ctx.settings.set("model", DEFAULT_MODEL);
         }
       }
     },

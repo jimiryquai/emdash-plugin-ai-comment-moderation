@@ -10,5 +10,16 @@
   "repo": "https://github.com/jimiryquai/emdash-plugin-ai-comment-moderation",
   "capabilities": ["network:request", "users:read"],
   "allowedHosts": ["api.cloudflare.com"],
+  "admin": {
+    "settingsSchema": {
+      "accountId": { "type": "string", "label": "Cloudflare account ID" },
+      "apiToken": { "type": "secret", "label": "Workers AI API token" },
+      "model": {
+        "type": "string",
+        "label": "Workers AI model",
+        "default": "@cf/meta/llama-3.1-8b-instruct"
+      }
+    }
+  },
   "storage": {}
 }

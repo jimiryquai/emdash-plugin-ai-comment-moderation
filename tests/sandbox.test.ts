@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
   createPluginRuntimeTestHost,
   type PluginRuntimeTestHost
@@ -32,9 +32,45 @@ beforeEach(async () => {
 afterEach(async () => {
   await host?.dispose();
   host = undefined;
+  vi.unstubAllEnvs();
 });
 
 describe("sandboxed comment moderation", () => {
+  it("classifies comments using the declared admin settings", async () => {
+    vi.stubEnv("EMDASH_ENCRYPTION_KEY", "emdash_enc_v1_AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+    const saved = await host!.actions.plugin.updateSettings({
+      accountId: "test-account",
+      apiToken: "test-token",
+      model: "@cf/custom/model"
+    });
+
+    expect(saved).toMatchObject({
+      success: true,
+      data: {
+        schema: {
+          accountId: { type: "string" },
+          apiToken: { type: "secret" },
+          model: { type: "string", default: "@cf/meta/llama-3.1-8b-instruct" }
+        },
+        values: { accountId: "test-account", model: "@cf/custom/model" },
+        secretsSet: { apiToken: true }
+      }
+    });
+    expect(JSON.stringify(saved)).not.toContain("test-token");
+
+    const customUrl = "https://api.cloudflare.com/client/v4/accounts/test-account/ai/run/@cf/custom/model";
+    await host!.http.respond(customUrl, Response.json({
+      success: true, result: { response: '{"spam":true,"toxic":false}' }
+    }));
+    const response = await submitComment("Buy cheap pills now!");
+    expect(response.status).toBe(201);
+    expect(await response.json()).toMatchObject({ success: true, data: { status: "spam" } });
+    expect(host!.http.requests()[0]).toMatchObject({
+      url: customUrl,
+      headers: { authorization: "Bearer test-token" }
+    });
+  });
+
   it("approves a clean comment through the production comment submission path", async () => {
     await host!.http.respond(
       aiUrl,

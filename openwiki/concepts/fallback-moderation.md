@@ -5,7 +5,7 @@ description: The inline replica of EmDash's built-in 4-step moderation rules tha
 tags: [fallback, moderation, failure-handling, emdash]
 verified:
   - by: openwiki/0.9.0
-    at: 2026-11-13T15:09:12.734Z
+    at: 2026-11-13T18:38:50.606Z
 sources:
   - id: openwiki-source-812e852d12e9cbe05c037dd4
     resource: repo://docs/plans/implementation_plan.md
@@ -13,15 +13,14 @@ sources:
     resource: repo://src/plugin.ts
   - id: openwiki-source-0657e9a63d10ecccef248304
     resource: repo://tests/moderation.test.ts
-generated: { by: "claude-code", at: "2026-11-13T15:09:12.734Z" }
+generated: { by: "claude-code", at: "2026-11-13T18:38:50.606Z" }
 ---
 
 # Fallback moderation logic
 
 ## Responsibility
 
-<!-- openwiki: broken internal link [/openwiki/architecture/workers-ai-integration.md] link "/openwiki/architecture/workers-ai-integration.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-`fallbackModeration(event)` in `src/plugin.ts` is a pure function that reproduces EmDash's built-in default comment moderation as four ordered rules. It is the plugin's safety net: whenever the [Workers AI integration](/openwiki/architecture/workers-ai-integration.md) cannot produce a verdict, the hook still returns a sane `ModerationDecision` and comment submission succeeds.
+`fallbackModeration(event)` in `src/plugin.ts` is a pure function that reproduces EmDash's built-in default comment moderation as four ordered rules. It is the plugin's safety net: whenever the [Workers AI integration](../architecture/workers-ai-integration.md) cannot produce a verdict, the hook still returns a sane `ModerationDecision` and comment submission succeeds.
 
 ## The four ordered rules
 
@@ -45,8 +44,7 @@ The fallback runs (never throws) in every one of these situations, all inside `m
 - `parseModerationResponse` cannot extract boolean `spam`/`toxic` fields;
 - the `ctx.http.fetch` call itself throws.
 
-<!-- openwiki: broken internal link [/openwiki/workflows/comment-moderation.md] link "/openwiki/workflows/comment-moderation.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-The empty-comment case is *not* a fallback: the hook returns `pending` directly before the AI path begins (see [Comment moderation workflow](/openwiki/workflows/comment-moderation.md)).
+The empty-comment case is *not* a fallback: the hook returns `pending` directly before the AI path begins (see [Comment moderation workflow](../workflows/comment-moderation.md)).
 
 ## Why the logic is replicated inline
 
@@ -56,7 +54,5 @@ The trade-off is drift risk: if EmDash changes its built-in ladder, this replica
 
 ## Related pages
 
-<!-- openwiki: broken internal link [/openwiki/workflows/comment-moderation.md] link "/openwiki/workflows/comment-moderation.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- [Comment moderation workflow](/openwiki/workflows/comment-moderation.md) — where the fallback sits in the overall flow.
-<!-- openwiki: broken internal link [/openwiki/architecture/workers-ai-integration.md] link "/openwiki/architecture/workers-ai-integration.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- [Cloudflare Workers AI integration](/openwiki/architecture/workers-ai-integration.md) — the failure modes that hand off to this logic.
+- [Comment moderation workflow](../workflows/comment-moderation.md) — where the fallback sits in the overall flow.
+- [Cloudflare Workers AI integration](../architecture/workers-ai-integration.md) — the failure modes that hand off to this logic.

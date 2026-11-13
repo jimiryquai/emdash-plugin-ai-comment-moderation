@@ -5,20 +5,20 @@ description: The end-to-end comment:moderate flow — how the exclusive hook is 
 tags: [moderation, hooks, workflow, comments, emdash]
 verified:
   - by: openwiki/0.9.0
-    at: 2026-11-13T15:09:12.734Z
+    at: 2026-11-13T18:38:50.606Z
 sources:
   - id: openwiki-source-23775c3de52f3ab95a13cb8b
     resource: repo://README.md
   - id: openwiki-source-e357d61069f3b66782c52ded
     resource: repo://src/plugin.ts
-generated: { by: "claude-code", at: "2026-11-13T15:09:12.734Z" }
+generated: { by: "claude-code", at: "2026-11-13T18:38:50.606Z" }
 ---
 
 # Comment moderation workflow
 
 ## Entry point and hook policy
 
-The plugin's entire runtime surface is one exclusive hook registration:
+Comment moderation enters through one exclusive hook registration:
 
 ```ts
 "comment:moderate": {
@@ -43,9 +43,7 @@ with `event.metadata.ai_moderation = { error: "Empty comment" }`. No settings ar
 
 ## Step 2 — AI verdict
 
-<!-- openwiki: broken internal link [/openwiki/architecture/workers-ai-integration.md] link "/openwiki/architecture/workers-ai-integration.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-<!-- openwiki: broken internal link [/openwiki/concepts/fallback-moderation.md] link "/openwiki/concepts/fallback-moderation.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-For a non-empty body the handler delegates to `moderateWithAI` ([Cloudflare Workers AI integration](/openwiki/architecture/workers-ai-integration.md)), which either produces an AI-grounded decision or hands off to the [fallback ladder](/openwiki/concepts/fallback-moderation.md) on any failure.
+For a non-empty body the handler delegates to `moderateWithAI` ([Cloudflare Workers AI integration](../architecture/workers-ai-integration.md)), which either produces an AI-grounded decision or hands off to the [fallback ladder](../concepts/fallback-moderation.md) on any failure.
 
 ## Step 3 — decision mapping
 
@@ -57,11 +55,11 @@ The AI verdict `{ spam, toxic }` maps to comment status with **spam taking prece
 | false | true | `pending` (held for review) | `AI: spam=false, toxic=true` |
 | false | false | `approved` | `AI: spam=false, toxic=false` |
 
-The raw classification is preserved verbatim in `ModerationDecision.reason` (e.g. `"AI: spam=false, toxic=false"`), so the admin comments panel shows which way the model leaned. Fallback decisions carry their own reasons ("Authenticated CMS user", "Moderation disabled", "Returning commenter", "Held for review").
+The raw classification is preserved verbatim in `ModerationDecision.reason` (e.g. `"AI: spam=false, toxic=false"`), so callers receive which way the model leaned; this repository does not establish that the admin panel displays or persists the reason. Fallback decisions carry their own reasons ("Authenticated CMS user", "Moderation disabled", "Returning commenter", "Held for review").
 
 ## Metadata semantics — what does and does not persist
 
-The handler writes the decision into `event.metadata.ai_moderation = { decision, reason }` before returning. However, **EmDash 1.4's isolated hook transport does not copy event metadata mutations back to the host**, so the plugin cannot promise these values persist into the comment's stored moderation metadata. The durable trace of an AI decision is the returned `reason` string, not the metadata object. Tests assert the metadata mutation at the unit level (where the event object is in-process) but deliberately make no persistence claim in the sandbox.
+The handler writes the decision into `event.metadata.ai_moderation = { decision, reason }` before returning. However, **EmDash 1.4's isolated hook transport does not copy event metadata mutations back to the host**, so the plugin cannot promise these values persist into the comment's stored moderation metadata. The hook returns the `reason` string to its caller; durable storage or admin display of that string is not established here. Tests assert the metadata mutation at the unit level (where the event object is in-process) but deliberately make no persistence claim in the sandbox.
 
 ## Failure and ordering invariants
 
@@ -70,14 +68,10 @@ The handler writes the decision into `event.metadata.ai_moderation = { decision,
 - Spam beats toxic: a comment classified as both is filed as `spam`, not held.
 - The 15s timeout bounds the whole handler, covering the AI round trip plus parsing.
 
-<!-- openwiki: broken internal link [/openwiki/operations/testing.md] link "/openwiki/operations/testing.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-Representative coverage: `tests/moderation.test.ts` drives the handler directly for every row of the mapping table plus the empty and fallback paths; `tests/sandbox.test.ts` repeats the mapping through EmDash's real submission action (see [Testing strategy](/openwiki/operations/testing.md)).
+Representative coverage: `tests/moderation.test.ts` drives the handler directly for every row of the mapping table plus the empty and fallback paths; `tests/sandbox.test.ts` repeats the mapping through EmDash's real submission action (see [Testing strategy](../operations/testing.md)).
 
 ## Related pages
 
-<!-- openwiki: broken internal link [/openwiki/architecture/workers-ai-integration.md] link "/openwiki/architecture/workers-ai-integration.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- [Cloudflare Workers AI integration](/openwiki/architecture/workers-ai-integration.md) — how the verdict is produced.
-<!-- openwiki: broken internal link [/openwiki/concepts/fallback-moderation.md] link "/openwiki/concepts/fallback-moderation.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- [Fallback moderation logic](/openwiki/concepts/fallback-moderation.md) — the decision returned when it is not.
-<!-- openwiki: broken internal link [/openwiki/architecture/plugin-structure.md] link "/openwiki/architecture/plugin-structure.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- [Plugin structure and packaging](/openwiki/architecture/plugin-structure.md) — where the hook is declared.
+- [Cloudflare Workers AI integration](../architecture/workers-ai-integration.md) — how the verdict is produced.
+- [Fallback moderation logic](../concepts/fallback-moderation.md) — the decision returned when it is not.
+- [Plugin structure and packaging](../architecture/plugin-structure.md) — where the hook is declared.

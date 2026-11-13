@@ -5,20 +5,18 @@ description: The outbound moderation call to Cloudflare Workers AI — endpoint 
 tags: [workers-ai, cloudflare, http, parsing, moderation]
 verified:
   - by: openwiki/0.9.0
-    at: 2026-11-13T15:09:12.734Z
+    at: 2026-11-13T18:38:50.606Z
 sources:
   - id: openwiki-source-e357d61069f3b66782c52ded
     resource: repo://src/plugin.ts
-generated: { by: "claude-code", at: "2026-11-13T15:09:12.734Z" }
+generated: { by: "claude-code", at: "2026-11-13T18:38:50.606Z" }
 ---
 
 # Cloudflare Workers AI integration
 
 ## Responsibility
 
-<!-- openwiki: broken internal link [/openwiki/workflows/comment-moderation.md] link "/openwiki/workflows/comment-moderation.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-<!-- openwiki: broken internal link [/openwiki/concepts/fallback-moderation.md] link "/openwiki/concepts/fallback-moderation.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-`moderateWithAI` in `src/plugin.ts` owns every aspect of talking to Cloudflare Workers AI: reading credentials from plugin settings, building and authorizing the request, keeping the payload bounded, and coercing the model's free-text answer into a strict `{ spam, toxic }` verdict. It is called only from the `comment:moderate` hook (see [Comment moderation workflow](/openwiki/workflows/comment-moderation.md)); on any failure it defers to the [fallback moderator](/openwiki/concepts/fallback-moderation.md) rather than throwing.
+`moderateWithAI` in `src/plugin.ts` owns every aspect of talking to Cloudflare Workers AI: reading credentials from plugin settings, building and authorizing the request, keeping the payload bounded, and coercing the model's free-text answer into a strict `{ spam, toxic }` verdict. It is called only from the `comment:moderate` hook (see [Comment moderation workflow](../workflows/comment-moderation.md)); on any failure it defers to the [fallback moderator](../concepts/fallback-moderation.md) rather than throwing.
 
 ## Endpoint and authentication
 
@@ -30,8 +28,7 @@ Authorization: Bearer {apiToken}
 Content-Type: application/json
 ```
 
-<!-- openwiki: broken internal link [/openwiki/operations/configuration-and-settings.md] link "/openwiki/operations/configuration-and-settings.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- `accountId` and `apiToken` come from `ctx.settings` (the admin-configured values; see [Configuration and admin settings](/openwiki/operations/configuration-and-settings.md)). If either is unset, the function logs a warning and returns the fallback decision **without any network call**.
+- `accountId` and `apiToken` come from `ctx.settings` (the admin-configured values; see [Configuration and admin settings](../operations/configuration-and-settings.md)). If either is unset, the function logs a warning and returns the fallback decision **without any network call**.
 - `model` comes from settings too, defaulting to `@cf/meta/llama-3.1-8b-instruct` when unset.
 - The call goes through `ctx.http.fetch`, the sandbox-brokered HTTP client granted by the `network:request` capability. If `ctx.http` is absent (capability not granted), the function logs an error and falls back.
 - The host allowlist in the manifest permits exactly `api.cloudflare.com`, so the sandbox would reject any other destination.
@@ -73,9 +70,6 @@ This is what makes the plugin fail-safe: a Cloudflare outage, a bad token, or a 
 
 ## Related pages
 
-<!-- openwiki: broken internal link [/openwiki/workflows/comment-moderation.md] link "/openwiki/workflows/comment-moderation.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- [Comment moderation workflow](/openwiki/workflows/comment-moderation.md) — the hook that invokes this integration and maps the verdict to comment status.
-<!-- openwiki: broken internal link [/openwiki/concepts/fallback-moderation.md] link "/openwiki/concepts/fallback-moderation.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- [Fallback moderation logic](/openwiki/concepts/fallback-moderation.md) — the decision returned on every failure above.
-<!-- openwiki: broken internal link [/openwiki/operations/configuration-and-settings.md] link "/openwiki/operations/configuration-and-settings.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- [Configuration and admin settings](/openwiki/operations/configuration-and-settings.md) — where `accountId`, `apiToken`, and `model` come from.
+- [Comment moderation workflow](../workflows/comment-moderation.md) — the hook that invokes this integration and maps the verdict to comment status.
+- [Fallback moderation logic](../concepts/fallback-moderation.md) — the decision returned on every failure above.
+- [Configuration and admin settings](../operations/configuration-and-settings.md) — where `accountId`, `apiToken`, and `model` come from.

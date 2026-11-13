@@ -5,7 +5,7 @@ description: How the AI Comment Moderation plugin is assembled from its manifest
 tags: [plugin, packaging, manifest, exports, emdash]
 verified:
   - by: openwiki/0.9.0
-    at: 2026-11-13T15:09:12.734Z
+    at: 2026-11-13T18:38:50.606Z
 sources:
   - id: openwiki-source-ea70eb6c045047448e446296
     resource: repo://.gitignore
@@ -17,7 +17,7 @@ sources:
     resource: repo://README.md
   - id: openwiki-source-e357d61069f3b66782c52ded
     resource: repo://src/plugin.ts
-generated: { by: "claude-code", at: "2026-11-13T15:09:12.734Z" }
+generated: { by: "claude-code", at: "2026-11-13T18:38:50.606Z" }
 ---
 
 # Plugin structure and packaging
@@ -33,8 +33,7 @@ The manifest is the plugin's declaration to EmDash and the build CLI:
 - **Identity**: slug `ai-comment-moderation`, publisher `jamesryan.dev`, display name "AI Comment Moderation", MIT license, repo/security URLs pointing at `jimiryquai/emdash-plugin-ai-comment-moderation`.
 - **Capabilities**: `network:request` (for the outbound Workers AI call) and `users:read` (to register the comment moderation hook). The sandbox denies anything not declared here.
 - **Allowed hosts**: network requests are restricted to `api.cloudflare.com` only.
-<!-- openwiki: broken internal link [/openwiki/operations/configuration-and-settings.md] link "/openwiki/operations/configuration-and-settings.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- **Admin settings schema**: declares the three settings keys (`accountId`, `apiToken` as a secret, `model` with a default) rendered on the plugin's EmDash settings page (see [Configuration and admin settings](/openwiki/operations/configuration-and-settings.md)).
+- **Admin settings schema**: declares the three settings keys (`accountId`, `apiToken` as a secret, `model` with a default) rendered on the plugin's EmDash settings page (see [Configuration and admin settings](../operations/configuration-and-settings.md)).
 - **Storage**: empty — the plugin persists nothing of its own beyond settings.
 
 ## Source layout and build artifacts
@@ -68,9 +67,6 @@ A host site installs the package and lists the default import in the `sandboxed`
 
 ## Related pages
 
-<!-- openwiki: broken internal link [/openwiki/workflows/comment-moderation.md] link "/openwiki/workflows/comment-moderation.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- [Comment moderation workflow](/openwiki/workflows/comment-moderation.md) — what the hooks declared here actually do.
-<!-- openwiki: broken internal link [/openwiki/operations/configuration-and-settings.md] link "/openwiki/operations/configuration-and-settings.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- [Configuration and admin settings](/openwiki/operations/configuration-and-settings.md) — the settings schema rendered from this manifest.
-<!-- openwiki: broken internal link [/openwiki/operations/release-and-ci.md] link "/openwiki/operations/release-and-ci.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- [CI and release process](/openwiki/operations/release-and-ci.md) — how these artifacts are validated and published.
+- [Comment moderation workflow](../workflows/comment-moderation.md) — what the hooks declared here actually do.
+- [Configuration and admin settings](../operations/configuration-and-settings.md) — the settings schema rendered from this manifest.
+- [CI and release process](../operations/release-and-ci.md) — how these artifacts are validated and published.

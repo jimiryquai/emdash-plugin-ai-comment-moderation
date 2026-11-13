@@ -5,7 +5,7 @@ description: The three admin settings that drive AI moderation, the encryption p
 tags: [configuration, settings, secrets, installation, sandbox]
 verified:
   - by: openwiki/0.9.0
-    at: 2026-11-13T15:09:12.734Z
+    at: 2026-11-13T18:38:50.606Z
 sources:
   - id: openwiki-source-0deb758ff1c59b07bf51c2fb
     resource: repo://emdash-plugin.jsonc
@@ -15,7 +15,7 @@ sources:
     resource: repo://src/plugin.ts
   - id: openwiki-source-f8a908d328a7238dc8d98f40
     resource: repo://tests/sandbox.test.ts
-generated: { by: "claude-code", at: "2026-11-13T15:09:12.734Z" }
+generated: { by: "claude-code", at: "2026-11-13T18:38:50.606Z" }
 ---
 
 # Configuration and admin settings
@@ -30,8 +30,7 @@ The manifest's `admin.settingsSchema` declares three keys, rendered on the plugi
 | `apiToken` | `secret` | Cloudflare API token with Workers AI access; EmDash encrypts it at rest. |
 | `model` | `string` | Workers AI model; schema default `@cf/meta/llama-3.1-8b-instruct`. |
 
-<!-- openwiki: broken internal link [/openwiki/architecture/workers-ai-integration.md] link "/openwiki/architecture/workers-ai-integration.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-All three are read through `ctx.settings.get(...)` at moderation time (see [Cloudflare Workers AI integration](/openwiki/architecture/workers-ai-integration.md)); `accountId` and `apiToken` are mandatory for the AI path — if either is missing, moderation falls back without any network request. A missing `model` falls back to the compile-time `DEFAULT_MODEL` constant, which equals the schema default.
+All three are read through `ctx.settings.get(...)` at moderation time (see [Cloudflare Workers AI integration](../architecture/workers-ai-integration.md)); `accountId` and `apiToken` are mandatory for the AI path — if either is missing, moderation falls back without any network request. A missing `model` falls back to the compile-time `DEFAULT_MODEL` constant, which equals the schema default.
 
 ## Secret encryption prerequisites
 
@@ -58,14 +57,10 @@ The plugin runs inside the EmDash plugin sandbox, so the consuming site must pro
 - **Capability grants** — `network:request` (the outbound AI call) and `users:read` (registering the moderation hook), both declared in the manifest.
 - **Host restriction** — network egress is limited to `api.cloudflare.com`.
 
-<!-- openwiki: broken internal link [/openwiki/architecture/plugin-structure.md] link "/openwiki/architecture/plugin-structure.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-The package is installed as a dependency and its default import goes straight into the `sandboxed` array of the EmDash astro integration; since 2.0.0 there is no named factory — the descriptor is the default export (see [Plugin structure and packaging](/openwiki/architecture/plugin-structure.md)).
+The package is installed as a dependency and its default import goes straight into the `sandboxed` array of the EmDash astro integration; since 2.0.0 there is no named factory — the descriptor is the default export (see [Plugin structure and packaging](../architecture/plugin-structure.md)).
 
 ## Related pages
 
-<!-- openwiki: broken internal link [/openwiki/architecture/plugin-structure.md] link "/openwiki/architecture/plugin-structure.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- [Plugin structure and packaging](/openwiki/architecture/plugin-structure.md) — where the schema and capabilities are declared.
-<!-- openwiki: broken internal link [/openwiki/architecture/workers-ai-integration.md] link "/openwiki/architecture/workers-ai-integration.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- [Cloudflare Workers AI integration](/openwiki/architecture/workers-ai-integration.md) — how these settings are consumed at runtime.
-<!-- openwiki: broken internal link [/openwiki/operations/testing.md] link "/openwiki/operations/testing.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- [Testing strategy](/openwiki/operations/testing.md) — how settings behavior is verified in the sandbox.
+- [Plugin structure and packaging](../architecture/plugin-structure.md) — where the schema and capabilities are declared.
+- [Cloudflare Workers AI integration](../architecture/workers-ai-integration.md) — how these settings are consumed at runtime.
+- [Testing strategy](testing.md) — how settings behavior is verified in the sandbox.

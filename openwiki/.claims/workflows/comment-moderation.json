@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:4676ae7e28b4c47d9b9613c0c578739a0b5da1b0ba94269c435ca8d28adb5033",
+  "pageVersion": "sha256:619cea4ee06bfac3b24e2a78865ed84e89ebc3fadc21f6a9e4982c6eb8a71abd",
   "claims": [
     {
       "id": "claim_fbcc4c114f474ac3bab8765bfb326c81",
@@ -34,21 +34,21 @@
     },
     {
       "id": "claim_d765599a56aa4bf7aa6bb286ad061596",
-      "statement": "EmDash 1.4's isolated hook transport does not copy event metadata mutations back to the host, so the ai_moderation metadata the handler writes is not guaranteed to persist in the comment's stored moderation metadata; the durable trace of an AI decision is the returned reason string.",
+      "statement": "EmDash 1.4's isolated hook transport does not copy event metadata mutations back to the host, so the ai_moderation metadata the handler writes is not guaranteed to persist in the comment's stored moderation metadata. The handler returns its reason to the caller; durable storage of that reason is not established by this repository.",
       "evidence": [
         {
-          "resource": "repo://README.md#L81-L85",
-          "version": "repo-lines-v1:sha256:b37eb67daf4f9ca2a4e1733da82e38027845fe832b4bb14d95be3f1895ac81a1:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYmZlYWExNTkyMTg3MTdhMDcyOTE5MTM2MjYwZDI3YjhjMmUzYmExMGY1NTkyNmQ4MGZlNTAzY2Q1ZDBmMmEwNiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZGU3NTQzYThlOWViZGNhYzQ0YTgxOWU1NTQxODZiNWZjOTBmMmM5YjNmNGI5YWZlNDg0ZmIxY2MyYWY1YWRhNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjg2OTlmNTY3YmNlZTcyZWMwODRmMTk1NGE0OWU5MTFlN2MxMWQ0Y2IxNzg1M2FhOWZkNDA1M2Y1MjYyMmNhYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzYyNjM0NTgxNmUyZTExMDdhNmUxOWNlMmJiZGE0MTIzYWVjMzkzOTllN2I1Yjg0MmU4YTdmZWMzYWVjYjIzOSJ9"
+          "resource": "repo://README.md#L82-L85",
+          "version": "repo-lines-v1:sha256:44b680a0b9927e1a358d9310cf024ea4cd7ea9cc484baa44de6a2e55b5bc3e79:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWZlNDU2OWZhODQyMDY2ZmRkZDYwMGFjNTJmNTIyYmU2OGVkYjdmYTg0OTU3ZTNkZGQzNTBhMTQ5ZDY1YzNmZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZGU3NTQzYThlOWViZGNhYzQ0YTgxOWU1NTQxODZiNWZjOTBmMmM5YjNmNGI5YWZlNDg0ZmIxY2MyYWY1YWRhNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiY2NmOGZmOTI4YTRiOTk4Y2Y4YjE3YjZhZjM3NWJiMWNiMDQxY2IxMzQ2ZGQ4NGRlN2JlZTE4ODhlYTllZDAzNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzYyNjM0NTgxNmUyZTExMDdhNmUxOWNlMmJiZGE0MTIzYWVjMzkzOTllN2I1Yjg0MmU4YTdmZWMzYWVjYjIzOSJ9"
         },
         {
-          "resource": "repo://src/plugin.ts#L168-L176",
-          "version": "repo-lines-v1:sha256:cae4889cb3bd62ac3ee5bd2dd1d1df1ee80db3df7f0ba40766dcbea177d9d0fa:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDg5M2Y0MGUzNzgxZWI4OTZjODJkMDQ2YTA4MDY3YTExZTM1Y2RmMmYxZGZhZjI2ZmVhOTBiOGRiNjY3NjQxMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDAyZWFiYTRkNWI2YjAzYTIwN2YzNWUzMDg5MTdjYjA3ZjFjZjg1MGYyYTE3ZmY2ZjViMzQwYzEwZDk0MTZhYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDdmNDk1NzEzMDRiMDQzNmM1ZjNlYmYzZWEyMzQ0OTRiYjdhZWRkNTZmYmZmNzFlNmRmMzczZmI3MGNmNjQwMiJ9"
+          "resource": "repo://src/plugin.ts#L169-L174",
+          "version": "repo-lines-v1:sha256:6616ede05e7594c9af8c0b8803d6f734d69ab64b3bf334eade39d117aa0d31d1:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMWQ4ZjZkYWVhYjM5Y2ZmYmViMWU1MzdhYTgxYzI1OWUzYjhhODNhZGMzZjU3YTJjZDliZTY0MWFjZGQ5NzcwOCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTA1ZmM0MmNlOTM5ZmFkODU1NzkzODE5MGIyYjk2ZGZmNWY3OGY3ZTA3OWUxMmU3MzU0YjI3ZTUzNjQ3YjZkMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOGRlYWMwNTg5ZjE1ZjExNTJiYTRjZTkzZTBjZDNmOTZlMjdhZWZjMjI4MzgwOWE3NTY3OWFhOGUwYmI5YWM2MCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMWMwOGNiN2I4NTQ5MjY0ZjE1YjI0YzIzYTM5MmI5NDZiMzQ4MzVlMzIwODU0ZTBhYzVhMDUzM2M1NmM5YzM2ZCJ9"
         }
       ]
     }
   ],
   "verification": {
     "by": "openwiki/0.9.0",
-    "at": "2026-11-13T15:09:12.734Z"
+    "at": "2026-11-13T18:38:50.606Z"
   }
 }

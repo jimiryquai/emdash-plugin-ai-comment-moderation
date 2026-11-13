@@ -5,7 +5,7 @@ description: The four GitHub workflows guarding master, the release-to-npm trust
 tags: [ci, github-actions, npm, release, publishing]
 verified:
   - by: openwiki/0.9.0
-    at: 2026-11-13T15:09:12.734Z
+    at: 2026-11-13T18:38:50.606Z
 sources:
   - id: openwiki-source-164e2da859b5277df81c7d94
     resource: repo://.github/workflows/ci.yml
@@ -17,7 +17,7 @@ sources:
     resource: repo://.github/workflows/test.yml
   - id: openwiki-source-a040dd20ede532da30b5abc0
     resource: repo://RELEASING.md
-generated: { by: "claude-code", at: "2026-11-13T15:09:12.734Z" }
+generated: { by: "claude-code", at: "2026-11-13T18:38:50.606Z" }
 ---
 
 # CI and release process
@@ -27,8 +27,7 @@ generated: { by: "claude-code", at: "2026-11-13T15:09:12.734Z" }
 Three workflows run against `master` pushes and pull requests:
 
 - **`ci.yml` (CI)** — `npm ci`, then `npx tsc --noEmit`, `npm run validate` (EmDash plugin validation), `npm run build`, and `npm pack --dry-run`. This is the gate that the manifest, types, and distributables are coherent.
-<!-- openwiki: broken internal link [/openwiki/operations/testing.md] link "/openwiki/operations/testing.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- **`test.yml` (Test)** — `npm ci` + `npx vitest run`, covering both the unit project and the workerd sandbox project (see [Testing strategy](/openwiki/operations/testing.md)).
+- **`test.yml` (Test)** — `npm ci` + `npx vitest run`, covering both the unit project and the workerd sandbox project (see [Testing strategy](testing.md)).
 - **`security.yml` (Security)** — `npm audit --audit-level=high --omit=dev`, run on pushes, all PRs, and a weekly Monday 06:00 UTC schedule.
 
 ## Publishing pipeline (`publish.yml`)
@@ -40,8 +39,7 @@ Publishing is triggered by a **published GitHub release**, not by pushes. The jo
 3. upgrades npm to **11.21.1** before publishing — trusted publishing (OIDC) needs npm 11.5.1 or later, and Node 22 bundles npm 10, which never attempts the OIDC login and gets a 404 from the registry;
 4. runs `npm publish --provenance --access public` with `id-token: write` permissions.
 
-<!-- openwiki: broken internal link [/openwiki/architecture/plugin-structure.md] link "/openwiki/architecture/plugin-structure.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-`prepack` in `package.json` runs the build first, so the tarball always contains freshly built `dist/` artifacts (see [Plugin structure and packaging](/openwiki/architecture/plugin-structure.md)).
+`prepack` in `package.json` runs the build first, so the tarball always contains freshly built `dist/` artifacts (see [Plugin structure and packaging](../architecture/plugin-structure.md)).
 
 ## The approval boundary
 
@@ -57,9 +55,6 @@ Operational notes recorded with the process: the npm lockfile is authoritative a
 
 ## Related pages
 
-<!-- openwiki: broken internal link [/openwiki/architecture/plugin-structure.md] link "/openwiki/architecture/plugin-structure.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- [Plugin structure and packaging](/openwiki/architecture/plugin-structure.md) — what `validate`/`build` produce and what gets packed.
-<!-- openwiki: broken internal link [/openwiki/operations/testing.md] link "/openwiki/operations/testing.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- [Testing strategy](/openwiki/operations/testing.md) — the suites the CI and publish jobs run.
-<!-- openwiki: broken internal link [/openwiki/quickstart.md] link "/openwiki/quickstart.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- [Quickstart](/openwiki/quickstart.md) — local equivalents of the CI checks.
+- [Plugin structure and packaging](../architecture/plugin-structure.md) — what `validate`/`build` produce and what gets packed.
+- [Testing strategy](testing.md) — the suites the CI and publish jobs run.
+- [Quickstart](../quickstart.md) — local equivalents of the CI checks.

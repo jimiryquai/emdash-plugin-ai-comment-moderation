@@ -5,7 +5,7 @@ description: Two vitest projects verify the plugin — mocked unit tests that dr
 tags: [testing, vitest, workerd, sandbox, integration]
 verified:
   - by: openwiki/0.9.0
-    at: 2026-11-13T15:09:12.734Z
+    at: 2026-11-13T18:38:50.606Z
 sources:
   - id: openwiki-source-23775c3de52f3ab95a13cb8b
     resource: repo://README.md
@@ -15,7 +15,7 @@ sources:
     resource: repo://tests/sandbox.test.ts
   - id: openwiki-source-fbadcd8591b65031efaaedce
     resource: repo://vitest.config.ts
-generated: { by: "claude-code", at: "2026-11-13T15:09:12.734Z" }
+generated: { by: "claude-code", at: "2026-11-13T18:38:50.606Z" }
 ---
 
 # Testing strategy
@@ -58,9 +58,6 @@ The suite does not verify a deployed site's runner bindings, real Workers AI cla
 
 ## Related pages
 
-<!-- openwiki: broken internal link [/openwiki/workflows/comment-moderation.md] link "/openwiki/workflows/comment-moderation.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- [Comment moderation workflow](/openwiki/workflows/comment-moderation.md) — the behavior these suites pin down.
-<!-- openwiki: broken internal link [/openwiki/operations/configuration-and-settings.md] link "/openwiki/operations/configuration-and-settings.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- [Configuration and admin settings](/openwiki/operations/configuration-and-settings.md) — the settings surface exercised by the sandbox tests.
-<!-- openwiki: broken internal link [/openwiki/operations/release-and-ci.md] link "/openwiki/operations/release-and-ci.md" is root-absolute, which no real consumer resolves against the repository root (not a coding agent reading the page, not GitHub's Markdown renderer, not a local viewer); use a path relative to this file instead. Fix the href or restore the target, then delete this comment. -->
-- [CI and release process](/openwiki/operations/release-and-ci.md) — where these suites gate merges and publishes.
+- [Comment moderation workflow](../workflows/comment-moderation.md) — the behavior these suites pin down.
+- [Configuration and admin settings](configuration-and-settings.md) — the settings surface exercised by the sandbox tests.
+- [CI and release process](release-and-ci.md) — where these suites gate merges and publishes.

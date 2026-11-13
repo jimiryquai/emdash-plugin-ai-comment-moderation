@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:4efa342d0b7cc90280045117100d2720a7646e4aa06e2f1416cf1e1df3d3fa68",
+  "claims": [
+    {
+      "id": "claim_ee81e6db875d4402a01f011d24c8b68f",
+      "statement": "moderateWithAI reads accountId, apiToken, and model from plugin settings, defaults the model to @cf/meta/llama-3.1-8b-instruct when unset, and POSTs the comment to https://api.cloudflare.com/client/v4/accounts/{accountId}/ai/run/{model} through ctx.http.fetch with a Bearer apiToken authorization header.",
+      "evidence": [
+        {
+          "resource": "repo://src/plugin.ts#L67-L108",
+          "version": "repo-lines-v1:sha256:d24fa21f41f32800a36b63beccea262cd5308653a13a651b12937eb3234bf1bc:eyJzZWxlY3RlZExpbmVDb3VudCI6NDIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkyMTRlZTQxZGY4ZTc5NjFlMGFhYmMzYWFlNzBhMWEwN2I0MTE4YTM2YmMxMDQwNzA3NWI1ZGZjZjI4NmY3NTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyYmRhNzI3MWQxMzZhNGNhZDIzY2VkYzlkMDI2NmVhM2QzY2EyMDM1MThmMzcyNmYyYjE1YTRiMzFmMjlhZjEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI5ZDBjODA0MGRmM2RjZTkyY2E5NzhiYWFkY2ZlZTQ4ZTY1ZDc4YTMyNjE5NmRmYmQzOGU0YjdhMTZmNDI2ZGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI1OTI3ZmY0MDhmOWQyYTc3MjRlMTg4MDk2MTY0NDE3YTU2ZDVkMTI3NTJkNzA0ZTA0MjYzMmFkMzczOGUxODAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3060b80849c24116808885222a00efe1",
+      "statement": "Comment bodies longer than 10,000 characters are truncated via substring before being sent as the user message of a two-message chat completion whose system prompt demands strictly JSON with boolean spam and toxic fields.",
+      "evidence": [
+        {
+          "resource": "repo://src/plugin.ts#L8-L9",
+          "version": "repo-lines-v1:sha256:92ac5ee1f1cdfe2a85e7546870373898355424986ad7b36fcff882b3d895c60c:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjU3MDRkYTAyMDE3MzQyYzZjNGZkODg4MTk2ZGNiNTMyMDdhMmQ4OTUyMzdiMmFjMDViYTgxNWE1MmIwNTUxNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNjU1OWFkZTk3MWVlZDUzMTRmY2YyY2I2MDM5NGViNDJlN2M4YWJhYWFkMGJhNWM4ODkxMzJjYmNiMDA5NDQ4OSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMGMxMjU5NDYzMDU3NDRjYTViZmZiYzRlZGIyMmE5ZGNlMWM1Nzg3YzI5ZjVmZDAwNmNjMmEyMGUwMDI2MzU1NyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmY3MzgyMDliOWUzNTlkMzE1ZTg2MjBiZDZkMmI1NWJjODg4MzQzNWM2NDcxMmQ4ZTNmOTcwNGMxMTA1NjVjYiJ9"
+        },
+        {
+          "resource": "repo://src/plugin.ts#L87-L108",
+          "version": "repo-lines-v1:sha256:ab3ebe8d05487f1ddab3f86b5b26611000722bb2ac8e772dfe3ac73422dff0ee:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYzOWM4MjUxMDJmZjljNmUxYTlkMDA1YjIxY2Q4NzFiOTIyOGQ3YjBkM2ExM2VkMjZkMDMyNGFjYzcxNzBhNTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyYmRhNzI3MWQxMzZhNGNhZDIzY2VkYzlkMDI2NmVhM2QzY2EyMDM1MThmMzcyNmYyYjE1YTRiMzFmMjlhZjEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAzMDY3M2ZhMDYzYjhhM2M1ZTM1YjU3MmRmYmVmOThhYzc1NDkzMzU5YjMxYjdiMThmOWIxZGYyZjM4MWIzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI1OTI3ZmY0MDhmOWQyYTc3MjRlMTg4MDk2MTY0NDE3YTU2ZDVkMTI3NTJkNzA0ZTA0MjYzMmFkMzczOGUxODAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c9722350b14c401483e59be5d9f09916",
+      "statement": "parseModerationResponse accepts either a directly parsed JSON string or the first braced object extracted by a lazy regex from decorated model output, and returns a verdict only when both spam and toxic are present as booleans; extra fields are ignored and any other shape returns null.",
+      "evidence": [
+        {
+          "resource": "repo://src/plugin.ts#L23-L43",
+          "version": "repo-lines-v1:sha256:c1769b145e3292eae0770e5873716af713b727f4fad5c9acc33a848a3648a1d4:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU4MGIyMDQwZDQzNDlhZmY1OTk2MDFjMWYzY2EwYmExMTY0NzM4YzQ5MWY3ODFjMGRjOGM0OTNkZDU5N2M4NzEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM0YTc2MDI3ZDY4ZTM2ZDRiYTczYmE0ZTJkNzRjNTczMjJjMTQwMWZjZTg0NzNhOWJjMWUxZWEyNmI3ZmQ2NjAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUxMjYzZDJhNTc2NGRjYjJhMDE2YTEzZTEwNWY5MjhmMzM0NmU1OGIzZWU1MTY0YmE1NjY5ZTYwOTc5YmI3YjgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_0aca3f6c6f9544a487443a0225e4ba3d",
+      "statement": "Every AI failure mode (unset credentials, absent ctx.http, non-ok HTTP status, empty result.response, null parse, or a thrown fetch error) logs a warning or error and returns fallbackModeration(event) instead of throwing, so comment submission never fails because of the AI integration.",
+      "evidence": [
+        {
+          "resource": "repo://src/plugin.ts#L76-L145",
+          "version": "repo-lines-v1:sha256:5448dbac7e24e557e2b10fc76bf07b85b38346973a15c925e61a460ca37cd8f1:eyJzZWxlY3RlZExpbmVDb3VudCI6NzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE3MzFjNDQyN2IxOTQ3OTZmOWI1NjBlZTM4NTkwMDU1MDY0NTVhMTM3Y2FjNDIyN2NiOGRmNGUzNmQ2YjA3OTYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA4NmU2YTU0NTA5OGZhMjdlMTU0ODk3ODhiZTQwMGVlNTBhZGJhZTljZWJkMjAxYjk3OTZlYmNkNDNjNDRhOGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM4NWFhMDA3Y2M2ZDk3NDBkZWU5MTE3MjcwMjc4YTA0N2MyMDAyZGJmNGZiZDNhNWIyMTJmZWUzNWJiMjRmYjkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9bb7e586688c421d8bcfcd822864073c",
+      "statement": "The Workers AI response is consumed through the v4 envelope: the plugin reads payload.result.response and treats a missing or empty value as a failure that triggers the fallback.",
+      "evidence": [
+        {
+          "resource": "repo://src/plugin.ts#L117-L124",
+          "version": "repo-lines-v1:sha256:5c86b73256bc3961d9bf7ae158215ab46e075c5c546197ba062c3538e96c29b4:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWFiOTg3Y2ZiMzMwY2ZlYTczNDRkNDVmNmU3N2Q2MGIxODJiM2JkYWEzYmI4MWNmMzEyYzAxNmQ4YjExODA2ZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTZlYWQ3OGM4ZjVlNDIxOWM1MThhOTEyYzFjYWY2NTQwNWQyNDg3NmNjNjllY2YwMDg1ZmUwOGE1NDliNTIxMiJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-13T15:09:12.734Z"
+  }
+}

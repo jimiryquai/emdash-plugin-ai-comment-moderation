@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:d8f1a26ae22a78fa31ef7eb3210b44fde2c1754f0a2ea2debdc9fb67997f9b8b",
+  "claims": [
+    {
+      "id": "claim_3d8490611b73461eaddb54804834e0f8",
+      "statement": "The admin settings schema declares accountId as a string, apiToken as a secret encrypted by EmDash at rest, and model as a string whose schema default is @cf/meta/llama-3.1-8b-instruct.",
+      "evidence": [
+        {
+          "resource": "repo://emdash-plugin.jsonc#L14-L23",
+          "version": "repo-lines-v1:sha256:60a67b6d181671a68bf2b41a1c9c2c20fc69fdabb3afd9e8b1c927dc7b9177e5:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU5MDhkZmY2NTRlYTNlMjcxYmViYjdkNDgwNTY2M2Y3ZTk0ZTgxYTA4NGEwMDA0ODUzYjg1ZWJlZjg2MDVmMjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkNWNkMmZiNGYzZGY4ODQ1MTUyNTViMzk1MjNmMmY4YjU0NzJiZWVhOWY1NjZmZmNhMjA0ZGI4MDI1NjEwNDEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU4ZjRkMWU4MzZlMTE0YzliN2MzNGU1MmY4ZDE1YTdkY2E3ODY0M2FhMDA5YmRhNTVmNzY4NjUzZjhmZjIzMzkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoyLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM0MzBlNDVmYjBmZjFhMzhhZmI3ODEzMWRhZmZiZGUxMmZmZmVmZjNmODNjZWYzNzZiZjc5OGMxMDc1MmY4OWYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4e5dd7c8e20b405994c5cd7817efcd48",
+      "statement": "The plugin:install hook seeds the default model setting only when no model is stored, so reinstalling or upgrading never overwrites a configured custom model.",
+      "evidence": [
+        {
+          "resource": "repo://src/plugin.ts#L149-L156",
+          "version": "repo-lines-v1:sha256:302ae2e762f6fb3f3c8507a1820e3634b4138edc60d7723028f999f6c0da507c:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZGRkY2VmMDQ4MDI3NzNjNDJlY2QzNDA5NzVmYjVjYWM2NDI1NGZmYjgyNDU4NzAwNDlmMmU1MjlmNTYyOGI4MSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMWYwY2RiOTcyYTdiZmI3ZWQyNDZmOWZmNjcyMzg1ZTU1ZjQ5NjhmYzExMDQzZGM1YjY4NGQ1MWRmYTMxZGJjYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzg1YWEwMDdjYzZkOTc0MGRlZTkxMTcyNzAyNzhhMDQ3YzIwMDJkYmY0ZmJkM2E1YjIxMmZlZTM1YmIyNGZiOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODU5NDE4N2EyZTM3ZWU4Y2RhNTQ5NTI3NGZjMzIwOTEyNjY3YmVlMmU4ODAyNzZhODRhNzgxNzBiNDBlNDZiNCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_00d7cc65bb8841b4b2e232682a050df2",
+      "statement": "The site must configure EMDASH_ENCRYPTION_KEY before a token is entered and keep it backed up separately from the database; a token saved before the secret schema was declared may remain plaintext until re-saved in the settings page.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L56-L69",
+          "version": "repo-lines-v1:sha256:83aa364cabae8110196123a0a1f7980dd6fa23834c73fbc95c85146f01c5fafc:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImViNzk4MzMyYzI3ZmY1NzdlNzQ0MjA5MzYzOTRhNGY5N2M0M2U5NWVjOTg5MDVkNTQxOTg2Mzg4OTk4ZDNjODIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2YTEwMzc0ODc1YjU1ZjllNTA1YzM0OWI4YjhmZTA1ZjJlMGEyMzBkMWZmNGUxZmIwMjdiZTVhZmUyYmEyODEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU3ZDdhZjM4MGMwZDZlNjhiN2Y0YTlhZWM1YzMwOTNkMzE3OWFkNjNkZGQzYmQyYmExNTNiZTZhMDEwZTYyNjMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdhNzM5YzQ0NDBmM2JhOGZlZGYxN2Y3MjI4NzM5ODA5Yzc0ODQwMzg5YzY1Nzk2NzM4YzQxMThjM2I2ZDgwYTAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9325982c7cef46b6b22703d2fbf4473b",
+      "statement": "Saving settings through the admin path marks apiToken as a set secret without echoing the raw token value, verified in the sandbox test by asserting secretsSet and that the serialized response omits the token.",
+      "evidence": [
+        {
+          "resource": "repo://tests/sandbox.test.ts#L37-L57",
+          "version": "repo-lines-v1:sha256:564fe6a09417f8b0b3115085985ff37f0849824ab7f085c9326bb393eb00e8ca:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjliNjJmNjBkODU5MGE1NzljZjQ2ZjhkNjczNzhjNGM1NzJiOTYyY2VjY2RiOTBjN2E1ZjdiNDJiOTYwNzgyYTQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc2ZDBiMTQyZGYxM2UyNmJjOTk0OGM0MGI0NTk3YTEzYTYyZmE4YTAzODU5ZGFkYWUyMjAyZTZlZTQ4ZjUzMzUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjRjODJmYzVhZGY5ZTMyNDA4MDYxNTY1Mjg0NTlmMDU1NjExMDg0YWJmYTg1Yjc2YWU0NDQwNDA4NDExZDE4ZTcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3a64e0604aaa4fe6a2e0c0defe520ec5",
+      "statement": "A host site must supply a sandbox runner (such as @emdash-cms/sandbox-workerd/sandbox with workerd on Node.js) for the plugin to execute, alongside the declared network:request and users:read capabilities restricted to api.cloudflare.com.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L30-L42",
+          "version": "repo-lines-v1:sha256:7e2fa15a56904beadbdcd28e418e45bb3dc3d011f86090f4f2d9a0b23fc5aec4:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhmZjI0YzdkMzNmYmZmMTYyMzU0OGE1ZWI3MzM2OGE4OGEwOGMxZmFmYTEwODM3Y2Q0MTFkZDBmNTIzOWYyZDciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxZmM0Y2I4ZWQ1YjFlZTlhYWM5MDU1YWU1NTYzOGU5ZThiZThmNTMyMzFjMGE5NGFiM2Q4OGE3ZTNiNGYwZWMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRlMGY4M2ViZTQ1Njg5ZTg5MzQxZjBmODkzYzgyN2U5ZmY3NGJkMjdmMTdmOTQ3YmZjZDYzZDNkYzUzMTI2MjMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjljZmYyZTMwNTNiNTAwNzk0YTY4NTc1OTdhMDAwZjZmMGFjYmNjNTA4ZTdkYjQzOGZjNzNmYmI2ZTRiMTlmMWYifQ"
+        },
+        {
+          "resource": "repo://emdash-plugin.jsonc#L11-L12",
+          "version": "repo-lines-v1:sha256:7326837a3c4e470f67637234f97a7e0279e2cb7a50af85d6d2ffb0f9e9818de6:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmMyOTgzNWIzYjNmZDQ0ZGYxNDgyYjM5NTk2MTQxODA1ODBjMTAzMzBhNmE3YzdiNGIzZTg5YTA1YzE1NDRlNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOGVjMTY4ZTkzYTk0ZGRiNzYwYzQzN2ZhMTUwMjA0YWE5MGFhNGEwNzMyMDUwZmFlZDYwYmFhZDQ1ZDhjODVlYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMmRiNjkxZGZlNTcyMmVjOWJhNTU2ZjkzZGIzZTlkZjY5YTdjYjM1MzU5ZTBkMWQwOTA4YWYyNTk2ZGI3MjNmNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjliMDNmZjU1Y2QyZTQ0ZTliNzgyZmEwZDgxMmE1NjY4MjUzZDQ2YzM4ZGFkNDQzYmRhYzEzZWM0ODM0MTY5NiJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-13T15:09:12.734Z"
+  }
+}

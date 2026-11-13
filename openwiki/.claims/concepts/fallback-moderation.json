@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:d7b1c4964c9e016c694500321cc7e9c8364a2a2beaad15230a3ad33ace5cc250",
+  "claims": [
+    {
+      "id": "claim_3b2c84ecec6d4f4bac7902984ed3637d",
+      "statement": "fallbackModeration applies four strictly ordered rules from CommentModerateEvent: commentsAutoApproveUsers with an authenticated authorUserId approves, commentsModeration none approves, first_time with priorApprovedCount > 0 approves a returning commenter, and everything else is held pending.",
+      "evidence": [
+        {
+          "resource": "repo://src/plugin.ts#L45-L65",
+          "version": "repo-lines-v1:sha256:6e0dd001537bc9cdd496c7fa4d035def06e69c09ae2d43f32c0e64589c28d5e4:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBiYTM3YTdjZjY0NDhkMDdjMjE0YjMzOGYxN2EzNjIwMzY5MThjNjdiNTc2ZDNjNzFjMjk3YzBmODE4NjM4YTAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU5ZjFiZmNiZGUyMzdhMTIxNDEyMDUyNDRhOWNhNDAzM2I4OGVkYzAwNTlmNmQ1YzAzM2U0MTcxMmRhYTEyMWIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBjMDZlYzFmZTE3NGNjNDFlZjQyMWVjY2UxMWU4MmZiNWVhNjc2MjRhMzUzZDllYTYzZDVhNTYzZDllYWFhMmUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_edde7b1afc174635bb170aec39c75d81",
+      "statement": "The fallback is triggered by every AI-side failure inside moderateWithAI: unset accountId or apiToken (no network call made), absent ctx.http, non-ok HTTP status, empty result.response, unparseable model output, or a thrown fetch error.",
+      "evidence": [
+        {
+          "resource": "repo://src/plugin.ts#L76-L145",
+          "version": "repo-lines-v1:sha256:5448dbac7e24e557e2b10fc76bf07b85b38346973a15c925e61a460ca37cd8f1:eyJzZWxlY3RlZExpbmVDb3VudCI6NzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE3MzFjNDQyN2IxOTQ3OTZmOWI1NjBlZTM4NTkwMDU1MDY0NTVhMTM3Y2FjNDIyN2NiOGRmNGUzNmQ2YjA3OTYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA4NmU2YTU0NTA5OGZhMjdlMTU0ODk3ODhiZTQwMGVlNTBhZGJhZTljZWJkMjAxYjk3OTZlYmNkNDNjNDRhOGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM4NWFhMDA3Y2M2ZDk3NDBkZWU5MTE3MjcwMjc4YTA0N2MyMDAyZGJmNGZiZDNhNWIyMTJmZWUzNWJiMjRmYjkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5bc60f2cd43543dcb6eb9cd61a07f35e",
+      "statement": "The 4-step logic is replicated inline because EmDash's defaultCommentModerate is not exported from its public API, so importing internals was rejected as fragile in favor of the implementation plan's documented fallback option.",
+      "evidence": [
+        {
+          "resource": "repo://docs/plans/implementation_plan.md#L54-L85",
+          "version": "repo-lines-v1:sha256:e953d23bd1aaa6d5d0124ea1aec5c82a18a80b4a552104cb3f9e81af1642db12:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBkNjhjYzQ5ZDc2NGMxNDVmMmM1YzJiM2JmYjJiMjc3OWE5YTcwNWRjZDg2NjM3NDNhYzc3NTlhMTE3NzM5OGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRjN2I0Y2U0MGRmNjVmMDYwNjdmMTkwODUwNmZjNDMxNWEzODk5MjFhMjg2ZDY5NDFhNGNiNjRhOWMzNmZjYTUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFmOGUzYTAzMDhjZjY5ZmQxNGQ4MjhiNzc0NmEyMzc2ZDMzYTE2NWU0NmY3OWI0MmZiNDllMGIzZTdkMGYxODYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNlMDNhNzc5NmEzNDZkZjUyYTgyYjA3MTk3NDVkOGEyNDVlOTEzMzQzOTZkY2Y1NjExNTNmNDIxYzI0MzdmMzIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e90169f112ac40dca82c14c07eccba5f",
+      "statement": "fallbackModeration is a pure exported function covered by four focused unit tests asserting each rule's decision and reason string.",
+      "evidence": [
+        {
+          "resource": "repo://tests/moderation.test.ts#L107-L171",
+          "version": "repo-lines-v1:sha256:c7ae34a6e48e8737f09ed047dabbfdd0df88820ee64a1f2b56e611218cf004d8:eyJzZWxlY3RlZExpbmVDb3VudCI6NjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIyZDExY2FmNDNlOTdlZjM2OWU2YmVlZDFhMjY4YmQwNTgzOGYyOWI5ZGQyNTRiZjY5YmE2NDg4NDE0NzIzNGEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVhMzA1YTc5ZWFjNmJjZThjYzBhNjRmNmIzOTA2NjU3MmIxOWJhOTY5MDQwYjE4YmI0OWJkZDA5MzU2NTJiODIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY0MmQ5NGNiYmRmMzZhN2UyYTM5Y2M3YmMyNTEyNjJhNjY3Mjk3YjRmNmY1OWYyZjliMzJhOTA1ZDMxNTBhM2EifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-13T15:09:12.734Z"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:4676ae7e28b4c47d9b9613c0c578739a0b5da1b0ba94269c435ca8d28adb5033",
+  "claims": [
+    {
+      "id": "claim_fbcc4c114f474ac3bab8765bfb326c81",
+      "statement": "The plugin registers comment:moderate as an exclusive hook with errorPolicy abort and a 15000ms timeout, making it the sole moderator and bounding the handler to the AI round trip.",
+      "evidence": [
+        {
+          "resource": "repo://src/plugin.ts#L157-L161",
+          "version": "repo-lines-v1:sha256:c35ede16e3817fa030912cdeba1cf53778c3a4cb2c41becd5014112a104a57d2:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWJmZGIzNTc5N2U4M2I3ZWZkYmUzMDMyZDk5MjkxYmQ2ZDMyZTY3NDI4NmYzZGYxMWFhNDQwOWNjOTk2YjFiMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiN2FkOWVjMTkyYTBmZjc2ZjRkMjIxMWUzZjg2ZjQzODc5ZDJkOTgxMDRlMDVlMDNjZGJjOGRlYWFmYWZmYWQ1MCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODQ2ZWQ2YWNmNWY2OTFkYWVkYmYxNzZkMzJlMDJmOGI1MjI2ODFmZjE3YzlkNjcwOTgzNjVhMzE3NTI2ZjU2NiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYWY5YTcyMGNmYzdiOTE2ZTQ5ODM3NmJhNGM4Y2ExNTBjOTVmZDg5ZDY4ZGQwMzAwOWNmNTZmOWJmY2M3NzJkMiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_25b2d38b4486467c86ba0ee5dc8781c6",
+      "statement": "A comment whose trimmed body is empty returns pending with reason AI: Empty comment and sets event.metadata.ai_moderation to an error marker before any settings read or network call happens.",
+      "evidence": [
+        {
+          "resource": "repo://src/plugin.ts#L162-L167",
+          "version": "repo-lines-v1:sha256:d5d16b7685678f97cc1e687f670bf1ca17847b32e10550b4d9efdca3d4e099d6:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDhmYzQyYzE2NmM4NWJkYTkxYTczYWY0MWZlYjFhNDUwYzExMjlkZmU0YTI5ZTRlNmRhM2ZmNzkwZWIyYWMxZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTZiMDQ0OTE0Njk3MjJlODM2M2E5NGU0MDQ0NTM4ZTAxM2EyYTIxN2UzNmIxZTU2OGJhNjBhY2I3YjRjOGYyZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYWE5MDZmYWRlZGY3NzgxODNmOTdiYTA1YWMzYzllZmE0YzdiOTkzMGQ3Y2Y2OGJiZGE5MGI4OGM0MDU0NGEwZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzQ1MzY0ZDMwYjc1MzAyMTI3NTQ4NjJhMjRjN2I0YWUzYzMzNTQyY2U0M2E1NjI0MjllM2YzZjc5NGQ2NzQyZiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_3b3e5626ca844612baaad4fe0cde2f81",
+      "statement": "The AI verdict maps to comment status with spam taking precedence over toxic: spam=true yields status spam, toxic-only yields pending, and neither yields approved, each carrying the raw classification string as ModerationDecision.reason.",
+      "evidence": [
+        {
+          "resource": "repo://src/plugin.ts#L133-L138",
+          "version": "repo-lines-v1:sha256:04566d513251d18d5cd001279da291e911de0ca2af9e702dce830f8da284681d:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTNiZDMyZmJjMWI2OTdhNDdjMDI4OWE5NTcyMzNiZGE5M2Q4N2UxOTFkODM1NjU4OGRiN2U2ZTcwMjdiMWM4YSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjVhMmUyYTRhN2JlOTk3ZjdlNzJkMjYwNjhkZTRjZmMwMDg5YTA5NDI1NWVhMzZjNTg3OTU3M2ViNWFmYjNkOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjA1OTE1MWMzMDE5NDkxMWJiYzM2NTBiNTlmNTAzNjFjN2I4NzVhNmYzMjM5OTYyZmE3ZmE3MmJlZmI1OGFhMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTNmOTYyZTUxNzFlZjAwMTliODEyZDAyYTQ4ZDhjOGYzMmI3NmQxMTM3MmJlMGIyMmNmZTU3NGVlYmViMjVhMSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_d765599a56aa4bf7aa6bb286ad061596",
+      "statement": "EmDash 1.4's isolated hook transport does not copy event metadata mutations back to the host, so the ai_moderation metadata the handler writes is not guaranteed to persist in the comment's stored moderation metadata; the durable trace of an AI decision is the returned reason string.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L81-L85",
+          "version": "repo-lines-v1:sha256:b37eb67daf4f9ca2a4e1733da82e38027845fe832b4bb14d95be3f1895ac81a1:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYmZlYWExNTkyMTg3MTdhMDcyOTE5MTM2MjYwZDI3YjhjMmUzYmExMGY1NTkyNmQ4MGZlNTAzY2Q1ZDBmMmEwNiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZGU3NTQzYThlOWViZGNhYzQ0YTgxOWU1NTQxODZiNWZjOTBmMmM5YjNmNGI5YWZlNDg0ZmIxY2MyYWY1YWRhNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjg2OTlmNTY3YmNlZTcyZWMwODRmMTk1NGE0OWU5MTFlN2MxMWQ0Y2IxNzg1M2FhOWZkNDA1M2Y1MjYyMmNhYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzYyNjM0NTgxNmUyZTExMDdhNmUxOWNlMmJiZGE0MTIzYWVjMzkzOTllN2I1Yjg0MmU4YTdmZWMzYWVjYjIzOSJ9"
+        },
+        {
+          "resource": "repo://src/plugin.ts#L168-L176",
+          "version": "repo-lines-v1:sha256:cae4889cb3bd62ac3ee5bd2dd1d1df1ee80db3df7f0ba40766dcbea177d9d0fa:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDg5M2Y0MGUzNzgxZWI4OTZjODJkMDQ2YTA4MDY3YTExZTM1Y2RmMmYxZGZhZjI2ZmVhOTBiOGRiNjY3NjQxMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDAyZWFiYTRkNWI2YjAzYTIwN2YzNWUzMDg5MTdjYjA3ZjFjZjg1MGYyYTE3ZmY2ZjViMzQwYzEwZDk0MTZhYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDdmNDk1NzEzMDRiMDQzNmM1ZjNlYmYzZWEyMzQ0OTRiYjdhZWRkNTZmYmZmNzFlNmRmMzczZmI3MGNmNjQwMiJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-13T15:09:12.734Z"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:d7710bc4481ac2a690c88cd617615bfcd0376d3c8625cc6a03193d74ffe07795",
+  "claims": [
+    {
+      "id": "claim_c1a31858dddf4627805c6c9b401d0489",
+      "statement": "Three workflows guard master pushes and pull requests: ci.yml runs typecheck, plugin validation, build, and npm pack dry-run; test.yml runs the full vitest suite; security.yml runs npm audit at high level omitting dev dependencies on pushes, PRs, and a weekly Monday schedule.",
+      "evidence": [
+        {
+          "resource": "repo://.github/workflows/ci.yml",
+          "version": "repo-file-v1:sha256:821ee934db9cb86b67474a50ebb3b3ad81494c2c4726544e507142c474740d87"
+        },
+        {
+          "resource": "repo://.github/workflows/security.yml",
+          "version": "repo-file-v1:sha256:87dfcb453f5fbd3ccdf42ecce53b3c662209519f78a4d17e6877539511e93163"
+        },
+        {
+          "resource": "repo://.github/workflows/test.yml",
+          "version": "repo-file-v1:sha256:985c561e206a4c766019323b509c804bc47c223f59acd62372fe73ca3930a2bb"
+        }
+      ]
+    },
+    {
+      "id": "claim_c6325b4aece64ac887f4b9ec8c13feb1",
+      "statement": "Publishing is triggered only by a published GitHub release: publish.yml re-runs validation, typechecking, and tests, then upgrades npm to 11.21.1 before npm publish --provenance because Node 22's bundled npm 10 never attempts the OIDC trusted-publishing login and fails with a registry 404.",
+      "evidence": [
+        {
+          "resource": "repo://.github/workflows/publish.yml#L20-L27",
+          "version": "repo-lines-v1:sha256:2753aa385cafd4f0acd54461e670cda046cbf8d38520cbd235338a97b94826d1:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjNmMTdmNzA4YmY5NDE4YjhmYzA4YzE1YTBkNTFiMDE3YzNlNjRlNzkxOTYzZDk0ODI5YmFlNGY1M2ZhYzVkNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZDU4Y2YwNDgwM2I1NDdiZWNkNTUwOGZjZTkyYTQ0NGJkMWIzZDljMmFlNTM2Y2ZiYTJkNmI3ZGJmNWNkNzc2MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDBlZjUzNmRjOTRjNmU2YTcyZjRiNGJlYTYzMzEyOGMyYzdkZjhhNDIwOTg5ODRmNTc1OWEzYWEzZjIyYTk1YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_39e3d6c0d6f4466691a362ce6fb41691",
+      "statement": "RELEASING.md defines a human approval boundary: a release ends with an open PR against master and James's approval pending, and no tag, GitHub release, or npm publish may happen before that approval.",
+      "evidence": [
+        {
+          "resource": "repo://RELEASING.md#L5-L26",
+          "version": "repo-lines-v1:sha256:e09c5ebce2d75bdcb2aeda76b67cf37befad8e56a028f9ed0df326b8b86fbf8b:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU5MzVkYTY0ZmRiNTlmYzliZjhhODQ2ZmI3ZjIyYzE0MTU2ZThhYmQ3ODQyMTI0MTQ5ODY5YzUxMzVlNzU1NGYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ3OWU4MTEzZDI0MWEzZTZkYmY4NjY4YzU5NTY2ZGRjNjk3ZWIzMTEwM2M5NGYwMDQ2ZjU3MzE2OTgwMDc0YmQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA2MGM1M2I3OGYyMDE4NWU3ZjY0NmVkNDAxOGEyNjI0MjBjMWNjZDU0ODQ1NmY5MmYyYmM5Mjc5Mzk5Mjg0OTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA0YTRkZTJmZGYwYTZmMDI3YWVhMjZmZDc2MjM4YzBjODBkYTIyZGRkZGU1NTczNWNkMTI0ZjE0Y2E4Y2JmYWQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e079147ce8e54efa8de2b39134eecfdc",
+      "statement": "After approval the release sequence is an npm version bump (skipped if the release PR already bumped), pushing the commit and tag, and creating the GitHub release whose publication triggers the automated npm publish workflow.",
+      "evidence": [
+        {
+          "resource": "repo://RELEASING.md#L26-L52",
+          "version": "repo-lines-v1:sha256:312c678865308ef229b425c32a628679b4a75c0d043bf3ec50168e04099993fd:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ3OWU4MTEzZDI0MWEzZTZkYmY4NjY4YzU5NTY2ZGRjNjk3ZWIzMTEwM2M5NGYwMDQ2ZjU3MzE2OTgwMDc0YmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImE3OWIwNDZlYTZjZTkwZjY0ZTU1MGQ0NDUzMjc3NGZiMDczOThhODM3OWI5YzBlNzc3NTMzNjMyZTkxYThkYTIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUxMDVkNjJiNDEyNWE1ZmM1ZDdmZWUzM2M2OGU1ZjMyNjYwNmYxNTNlNjUzMzk3OGMxMzE2ZWVhZGNmYjY3M2YifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-13T15:09:12.734Z"
+  }
+}

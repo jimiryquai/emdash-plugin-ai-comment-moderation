@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:56d97c05a29c83b67f17415c6f45b51ddf6819449bf4ba25911325993046e321",
+  "claims": [
+    {
+      "id": "claim_5ff754f2574a49d1898535f372073e16",
+      "statement": "vitest.config.ts defines two test projects — unit running tests/moderation.test.ts directly and sandbox running tests/sandbox.test.ts under the emdashPluginTest plugin — and sets WRANGLER_SEND_METRICS=false before the test plugin loads to disable Wrangler telemetry.",
+      "evidence": [
+        {
+          "resource": "repo://vitest.config.ts",
+          "version": "repo-file-v1:sha256:b7ba7c65c1fb84ee7a14bb46b660edcf97c3130fd47ed4114d09828c104f1137"
+        }
+      ]
+    },
+    {
+      "id": "claim_9f6d1b2b0b4f4ded9a57d1c6a62e130f",
+      "statement": "The unit tests drive the plugin module with hand-rolled fakes (FakeKV, FakeHttp, createFakeContext, createBaseEvent) and cover parseModerationResponse edge cases, each fallbackModeration rule, the comment:moderate hook integration including truncation and failure fallbacks, and plugin:install seeding.",
+      "evidence": [
+        {
+          "resource": "repo://tests/moderation.test.ts#L108-L456",
+          "version": "repo-lines-v1:sha256:25ef7158a1dedcbcb2a97d1a2e22536e224a7a3743acde390676506c061d3a42:eyJzZWxlY3RlZExpbmVDb3VudCI6MzQ5LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJhN2VlMDk5YmJiM2E2ODQwNmY4OTk1MjlmMDY5NmFjMDIyZDY1YzVkNTEyMzMzNjc3MDFiYzE2ZmUzNzQyODBkIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJjNGNkYjkyNWRlMTNmMDc3MTg2ZmY2N2I2NWE2MzYxNTg0Mzk5ZDc5ZDMxMGRkN2IyNDFhNTM1YzJjYzFjMGY5IiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI4Y2VlOWM2MzdiNDYyY2JjNjVjZmEyMDQ4NDQwMDBhZTJjMDUwNzA1M2ZkY2YxYjEwYTZkYzI0NTkwNWU4NDg1IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJmNmQ0NjAxYTk5YWRjMzc0OWJlYWE3YWExOWIzMDRjNGM4NzNmNzhjMjgwYzg2YzA2ZjRiYmQyMDEwMjk0YzcyIn0"
+        },
+        {
+          "resource": "repo://tests/moderation.test.ts#L16-L101",
+          "version": "repo-lines-v1:sha256:62b3210d9b5fdcd9f04e2c628f9c0d917467520eafc5ae6a267acfa83f0e523d:eyJzZWxlY3RlZExpbmVDb3VudCI6ODYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEzZWMyZjkzOTNjZjcyNWE0MmU1MGJlZTU3OGVjM2RjYTQ0NDBjNjI1ZGNlMDVlNDUyNDc4NDA4N2ViMWViNzAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjczNDI3NjQxNDBmMDBiMTQ3OTI4YmNjNTE3Yjg0NmNjZWVhZWU0ODk5YWJkMDlkNTEzMzNmZjQ3Zjc2MTc2N2MiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE0YWY3ZWQ2YzJjMmMwNjNmOGViMDRkYWMzNDFiM2VhNzBkYTg5MTBjNThmZjMxMWI2YTFiOGEyNmJkZGQxMTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjlmMzJjYzFhNDFmODdjYjViZDVjZDliYzc2MWU4NDM0NDAzODk5MGYwZDliNjAyMDVlMzc1OTNjZmJiZDQyYzMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1cd21da12c70405c8192f5aa33411b6b",
+      "statement": "The sandbox tests boot the built plugin inside workerd through the production Cloudflare sandbox runner via createPluginRuntimeTestHost, submit comments through EmDash's real comment submission action, and assert both the API response status and the stored comment status.",
+      "evidence": [
+        {
+          "resource": "repo://tests/sandbox.test.ts#L20-L36",
+          "version": "repo-lines-v1:sha256:4db7565b2d1f3e45666c8c8dcc2dbe40731f8fbea50f682bb6e3a92bbb4455f8:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhmMjlkMWQxYjhmMThiYTc3NmEwY2FjODVkMzgxMzdkMzE1NGVlYmMzMmE3OTYyMzFiMjc5YjliMmY5MDAzYjEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM2Y2M2NDJhNzdkNTkwYjk4Y2ZiNGE4NzE3NDg4YmVmNzFkNjI5MjkzMjhhYzZiOGZkYThlMWE1MmU2ZWJjOGEifQ"
+        },
+        {
+          "resource": "repo://tests/sandbox.test.ts#L38-L110",
+          "version": "repo-lines-v1:sha256:ecfc29ec1e2068922d09baf316da0f6ddf5672f1bc802f1d0082087a9e1eacb5:eyJzZWxlY3RlZExpbmVDb3VudCI6NzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdmYTNiNWJlZTE0NjJiMDM1ODM5Y2JjMzg4ZmQ4MmYyNDA1ODYxZDdlNzRmMTM2YmVjYTcxY2VjZmFiNDM3ZjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkwYzgyYzEyODU1MWI2N2E3Y2U1YWM3M2Y0MTA4NGRkMjE5NGI2YWU2Y2ZkM2RiYjc4YjU4ZTljNTVkZDA5OGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJkMDY3MDVjYmMyNDRjMTIwMTMyY2RjMDNmNDI5MGFmM2Q5ZTQ4NTQ2NGEwOTE4OTU4NDkyZWJiOWNlZDczMTMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6d04470e6b6c4a369c13d6f4ad88e96e",
+      "statement": "Workers AI is stubbed only at the outbound HTTP boundary with host.http.respond while plugin functions and context stay real, and unmatched HTTP requests fail locally instead of reaching Workers AI, so the sandbox tests never touch the network.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L85-L92",
+          "version": "repo-lines-v1:sha256:3fc7d81a20fe37b182abc6703d1ef0c7c685812481cd6a0d9b30b9f7a051d7fd:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZGU3NTQzYThlOWViZGNhYzQ0YTgxOWU1NTQxODZiNWZjOTBmMmM5YjNmNGI5YWZlNDg0ZmIxY2MyYWY1YWRhNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzM1YjUyODc0YzU1N2Q0MjFiYTJlODgyNzY0OGU5OWU3OTQwZTMwZWU4ZTA5NTE1ZjQ1YzI5YmNlNTNkNjEwZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNGM1NzIwNzU0MTcyOThjYjkxNzY2OTFiNTU2NDk1NTlmMDMzM2FmNGJkMWVmODA5OWFhNjEyMWRmZDY3M2E4YiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZGZiZTI1NGNmMzc3NTIwYzFlMzE1YjlmMmFhOTc1Yzk1Yzg0YTRjZmM3MjM3OWE1NWZkMjk5M2E0NDBmMGI1NyJ9"
+        },
+        {
+          "resource": "repo://tests/sandbox.test.ts#L62-L122",
+          "version": "repo-lines-v1:sha256:33fcbcc3c1defe3d9a27bc868002f00a7cfc16c4bd1592a487175f9e4e2a33b2:eyJzZWxlY3RlZExpbmVDb3VudCI6NjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBiYzBiYzFlMDE2N2QzOGVlZWUyNDAyYjMzMWU5ODY1Nzk5NGI3NWNmNzFiNjIxNzk5YWJhZjNhMjY5ZWY1ODUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFmYzE4YzczZjM3MmRjOTA4MWRmOWM1YTNhMDM3YWI2YWVkYTI5ODZlMjE2NzcxNDFjMjAxOGYyZjhhYTQ4OGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA4ZWIzNTI4NDIwOGU3YTRkOWM4NWE1NjA4OWQwYjI1ZjBhN2RjYWJhOWI3MjYwNjRmMGNhNzM4OTQ4Mjk1MGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM0MWM2ODU0YjJhOGNlN2FhYjU4MGE0MmUxZDkzNmMyMWUzYTBhYWQzZGFmNzU3OTBiZWNlYWQ0NmVmYmI4YjAifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-13T15:09:12.734Z"
+  }
+}

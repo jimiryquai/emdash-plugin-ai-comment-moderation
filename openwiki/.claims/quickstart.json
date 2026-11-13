@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:34cb528577d6f46db07752c204d8fbaedff3fcc6528513de5f31f275669aa5f6",
+  "claims": [
+    {
+      "id": "claim_f7703579c33a4c70908bee46bd21251c",
+      "statement": "The local verification sequence for the repository is npm install, npm run validate, npx tsc --noEmit, npx vitest run, npm run build, and npm pack --dry-run, on Node.js 22.23.4 or newer with npm as the authoritative package manager.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L92-L103",
+          "version": "repo-lines-v1:sha256:10b720e99fcab586dcad0fc06e12e2bbc8c8ed1b054cb3779d6c64c2ba27eba6:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjczNWI1Mjg3NGM1NTdkNDIxYmEyZTg4Mjc2NDhlOTllNzk0MGUzMGVlOGUwOTUxNWY0NWMyOWJjZTUzZDYxMGQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdmYmYxYWI4OTFjYjUwZTVmNmZlZjQyZDhkZWIxOTRlMjkzNTc4ZmRjMjc4ZWJiN2MzYmQ3MTcwNTllYzRhZWYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA5ODI0MzE0ZDQ1MTk5NWFmZDM3Y2Y2Mjc3MjZhMDc4YzY2OGY0Y2VlZDdmZWYzYTk4OTViNDlhMDQyYjkxMDEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc0NWVmM2IyYTdiNzg3NTkwZDA2ZmRkMWI1OTQwMzg4NjczMWI4ZTUxMTg4ZjliZjkyM2JkYTExZjEzNjNiZjUifQ"
+        },
+        {
+          "resource": "repo://package.json#L17-L22",
+          "version": "repo-lines-v1:sha256:751d175b47048557cfda18b11b86f01669414d4414484566f679bb37301721b2:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzQ4MzNkNTk0OWMwM2E0MGNhOTUyNDkxNjEwYTY2NTk2NDRiM2FhNDY2MzYyZjc5OTAyMGRiZjE5ODE1NDdkYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWI2YjI0YTYyMzk0YWUyNmFiNjU1YjdiNmY1NGQ2YTRmM2UyYWNlY2MwNzNjN2E2ZmU5YjRhZjRiYjY0ODIyMSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOGZhNTg4ZGQ3M2FkNjQ5MTM1NmJhMDNlZTY0ZjgyZjdmM2VkYWQ1NGViNWQyMTMzMTlkMzczZDg2YjllMWVkMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZGM0ZDBlYTQ1OGE2M2Q5NWUwMTU0NDkxMTgyZTQ4OGY0NDY3ZWUwMDFiNmNkM2I1MzAwMzFiNTQzYmUwZjg5MSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_fd2676b1dc2c4862bbe917eda705dc2f",
+      "statement": "A consuming site installs the package and places its default import directly in the sandboxed array of the EmDash integration with a mandatory sandboxRunner such as @emdash-cms/sandbox-workerd/sandbox; since 2.0.0 there is no named factory import.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L18-L42",
+          "version": "repo-lines-v1:sha256:fa73530f399b8cc7b7b1dbb1bfbe09443ad6fc683a0e1bb0e9d805bf6a15b6f8:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxZmM0Y2I4ZWQ1YjFlZTlhYWM5MDU1YWU1NTYzOGU5ZThiZThmNTMyMzFjMGE5NGFiM2Q4OGE3ZTNiNGYwZWMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIxZjFjYzViYjM2YTc0NzM5OWFiNzU1MDg4YjE2NGFlOTAzYjhhZmU3YjcyZGYzNjdhZjExMDA2MWFkZDkyODEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjljZmYyZTMwNTNiNTAwNzk0YTY4NTc1OTdhMDAwZjZmMGFjYmNjNTA4ZTdkYjQzOGZjNzNmYmI2ZTRiMTlmMWYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_113dd4da4ac24dd0b00c2a78f644358e",
+      "statement": "The plugin moderates comments with three possible AI outcomes — spam filed as spam, toxic held as pending, clean approved — and falls back to EmDash's built-in 4-step moderation whenever AI credentials are missing or the API or parsing fails.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L70-L89",
+          "version": "repo-lines-v1:sha256:337c246e9adf080eb8041acb99c87e8bc2ba98954bf62d00bd8e91912271d89a:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ3ZTU0ODRiMGU4NzliN2M4NGJmZmE1YTZjOTU0MTQ4NjM0ODdhMzk3M2E4NDViYTM2ZmY4NDgyM2JjOTdhYjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdhYjhjYjIzN2Y1YzVkMGQ4Mzc4Yzc1ZTI2NjE3MDgzOTdmYTZkODFiYjBjNGNjNDlhOTk2MTJjYmMxYTJlZDEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM4MzBjN2FiODY0M2FmMTNmNWQwMTc5Y2UzNjI3OTAwNzAxYWIwYjY4ZWNkNTcxOWM3NWM3MzFiMDAxODM5NmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg1MjEzZGE1ZTg5N2VjOWE2MGQyNjBiOWRlODkxYzk3ZDZjYjYxMGU0M2U2MWNmYjZkMTU4MjEzMTc4ZGEyZTIifQ"
+        },
+        {
+          "resource": "repo://src/plugin.ts#L133-L145",
+          "version": "repo-lines-v1:sha256:416b653ff6ace61447c95e4cd337e3a32d1a882a0947e4c0c05a3c630e272920:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUzYmQzMmZiYzFiNjk3YTQ3YzAyODlhOTU3MjMzYmRhOTNkODdlMTkxZDgzNTY1ODhkYjdlNmU3MDI3YjFjOGEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjIwNTkxNTFjMzAxOTQ5MTFiYmMzNjUwYjU5ZjUwMzYxYzdiODc1YTZmMzIzOTk2MmZhN2ZhNzJiZWZiNThhYTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM4NWFhMDA3Y2M2ZDk3NDBkZWU5MTE3MjcwMjc4YTA0N2MyMDAyZGJmNGZiZDNhNWIyMTJmZWUzNWJiMjRmYjkifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-13T15:09:12.734Z"
+  }
+}

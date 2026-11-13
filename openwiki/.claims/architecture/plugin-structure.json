@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:572f9380fe6d8a64f8780a223187169fbd6959a22a82dd1d57c3331a21ec20df",
+  "claims": [
+    {
+      "id": "claim_59fe4dc28aad4949925fb8a38e68929f",
+      "statement": "The plugin manifest declares capabilities network:request and users:read and restricts outbound network requests to the single allowed host api.cloudflare.com.",
+      "evidence": [
+        {
+          "resource": "repo://emdash-plugin.jsonc#L11-L12",
+          "version": "repo-lines-v1:sha256:7326837a3c4e470f67637234f97a7e0279e2cb7a50af85d6d2ffb0f9e9818de6:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmMyOTgzNWIzYjNmZDQ0ZGYxNDgyYjM5NTk2MTQxODA1ODBjMTAzMzBhNmE3YzdiNGIzZTg5YTA1YzE1NDRlNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOGVjMTY4ZTkzYTk0ZGRiNzYwYzQzN2ZhMTUwMjA0YWE5MGFhNGEwNzMyMDUwZmFlZDYwYmFhZDQ1ZDhjODVlYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMmRiNjkxZGZlNTcyMmVjOWJhNTU2ZjkzZGIzZTlkZjY5YTdjYjM1MzU5ZTBkMWQwOTA4YWYyNTk2ZGI3MjNmNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjliMDNmZjU1Y2QyZTQ0ZTliNzgyZmEwZDgxMmE1NjY4MjUzZDQ2YzM4ZGFkNDQzYmRhYzEzZWM0ODM0MTY5NiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_233b36f3278d419c937cea49a6b760fc",
+      "statement": "The plugin's entire implementation is the single source file src/plugin.ts, which exports the pure helpers parseModerationResponse and fallbackModeration and a default plugin object registering the plugin:install and comment:moderate hooks.",
+      "evidence": [
+        {
+          "resource": "repo://src/plugin.ts#L147-L178",
+          "version": "repo-lines-v1:sha256:f4c7f9efebd58c9d559d9e532ef99b89100edea2696c72d30f7c18705d772d5a:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE3OTE5M2JkYzVjZjk2MTE2ODU5ZDc4NzhhYTM4NDE4M2FhYmNiNmNhMjA5YjQ0MTk3ZTU2NjViNjM5N2UyYjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM3YTVkMjRjYzAyNGM1NTE2NTlhZDczMDczZWJiMGJkMDI1MmEzZmVmMDJiMjAwZDllNTIxY2ExNTQwNGRmMzAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoyLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzMjJlZTNiMzljNjY3NjU5NTgyMDQ4ZWQyMTcxZmQ2ZDI4M2ZmMjk2MmUxZWE3MjZlNWU4M2FkMzAwZjY3NDkifQ"
+        },
+        {
+          "resource": "repo://src/plugin.ts#L23-L45",
+          "version": "repo-lines-v1:sha256:c2f171e1c63d24f2423b0424009c85c395b9e30468885ba98d06a9cb54b80dc9:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU4MGIyMDQwZDQzNDlhZmY1OTk2MDFjMWYzY2EwYmExMTY0NzM4YzQ5MWY3ODFjMGRjOGM0OTNkZDU5N2M4NzEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBiYTM3YTdjZjY0NDhkMDdjMjE0YjMzOGYxN2EzNjIwMzY5MThjNjdiNTc2ZDNjNzFjMjk3YzBmODE4NjM4YTAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM0YTc2MDI3ZDY4ZTM2ZDRiYTczYmE0ZTJkNzRjNTczMjJjMTQwMWZjZTg0NzNhOWJjMWUxZWEyNmI3ZmQ2NjAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUyNDU1Zjg0OTQwNWM0NTE5MzJhN2ZlMTg2OTNiZTllOGQxOWMwNTkwYTg5MWQ4MzQwZWRmNWQ1OTdjNjg3MWEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5cecd51ef50a459580c5999492d74341",
+      "statement": "The EmDash plugin CLI builds both distributables from emdash-plugin.jsonc and src/plugin.ts, exposed as package entry . mapping to dist/index.mjs (descriptor) and subpath ./sandbox mapping to dist/plugin.mjs (sandbox entry).",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L46-L49",
+          "version": "repo-lines-v1:sha256:a7acf9c387b06b2166c1a8e08cf5504fe4a338291f26c4f55aaad06e47afc9b7:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTk0Y2JkODE5NDMxMWI5MzVjMjU3NDNiMTk4Y2M5MGNhYWJmNTBiZjk5MTJhMzFjMzg4MDk0OTlmMjgyYjhjMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODcyOGQyZGQxNjlkZTJjNThiMDg2ZDI5YmQ3MjgyMmRhNzYxN2QwMzQ5ZjU3ZDkwZDQ3YmYxOWE0NTk5ODg1OSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWNmZjJlMzA1M2I1MDA3OTRhNjg1NzU5N2EwMDBmNmYwYWNiY2M1MDhlN2RiNDM4ZmM3M2ZiYjZlNGIxOWYxZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODU0ZDQyODI0MDRmODBhOWM0NDA0MjYzYjNiNTk5ZGM5YmZlYTUxNjhkYmIzNGQ2OTdjY2ZlMjM2ODZhMmE4MiJ9"
+        },
+        {
+          "resource": "repo://package.json#L5-L21",
+          "version": "repo-lines-v1:sha256:f112536576825003a144f461d193cc1d5377e2e3b2252f588a8f522ab1c12c13:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNjMDViYjlmNGE4Yjk4NDUxMGY4MTVhNWZjNDA3OGQ3N2M1YTIwZTkzZjMzNzNkYzVkZGU0YTM0MWQxYjQwYzgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIxNjg4MTJlZGRjODdmNWUwZTUxZTBiN2EyNTEzOWIwZmYxZDY2ZDRlOWQwMjJiMThlYzE2ZTEzNzZhNWU4ZmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImYwNzBlNTEzZDNhMDc3ZjMxMWE1ZWZjOGJiYzJlNzNkOGUyNTRjNmJkYjUyMGZhY2ViODViZTU0MjVjZTA5NWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRiZjlmMzA0YzdhODhkZDA4NzNiNDM2NTY1OGQ1NDU1ZWM3YmI0ZmNhOTJkZmU1OTgzNTM5NGQ5ZmMwNGM4YzcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_0f5f114203b849f59964cac103805d37",
+      "statement": "The package version lives only in package.json; the CLI derives the descriptor and runtime manifest from it, and the peer dependency range is emdash ^1.4.0 after the breaking 2.0.0 EmDash 1.4 migration.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L46-L49",
+          "version": "repo-lines-v1:sha256:a7acf9c387b06b2166c1a8e08cf5504fe4a338291f26c4f55aaad06e47afc9b7:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTk0Y2JkODE5NDMxMWI5MzVjMjU3NDNiMTk4Y2M5MGNhYWJmNTBiZjk5MTJhMzFjMzg4MDk0OTlmMjgyYjhjMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODcyOGQyZGQxNjlkZTJjNThiMDg2ZDI5YmQ3MjgyMmRhNzYxN2QwMzQ5ZjU3ZDkwZDQ3YmYxOWE0NTk5ODg1OSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWNmZjJlMzA1M2I1MDA3OTRhNjg1NzU5N2EwMDBmNmYwYWNiY2M1MDhlN2RiNDM4ZmM3M2ZiYjZlNGIxOWYxZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODU0ZDQyODI0MDRmODBhOWM0NDA0MjYzYjNiNTk5ZGM5YmZlYTUxNjhkYmIzNGQ2OTdjY2ZlMjM2ODZhMmE4MiJ9"
+        },
+        {
+          "resource": "repo://package.json#L3-L26",
+          "version": "repo-lines-v1:sha256:6d78cebf2e6afc69df2dfc92cddeb29a9d9bf7351cefda7062032531932c172c:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVlMTc0ZDhkMDU5MjgyNDI3Yzg0ODI4YWI5OGU3OWI2N2VmNjEwMTkyMzUzMWI3ZTAxODhkZTZjZTc2NjE1NzAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkNWNkMmZiNGYzZGY4ODQ1MTUyNTViMzk1MjNmMmY4YjU0NzJiZWVhOWY1NjZmZmNhMjA0ZGI4MDI1NjEwNDEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjoyLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU3Mjg5ZTYyN2YwYzRhMDZiODA0NDVjY2RlYWM2Njg2NWIwNjY5NWQ3YzYwNWJiMDgxNGYwMWQzMjZiYWJhMmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImEyYWY3ODY0YjVlNjM4YmQ3YzdhYThmZDdkOTQ2M2MzZTg0NmU1ODVlOThlYmM4MDFlY2IwZDUxNjg0NDQ0NTgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_59d72b7a06204eff96c12937e2b790f0",
+      "statement": "dist/ is git-ignored and rebuilt by prepack before npm pack; the published tarball contains only dist/, emdash-plugin.jsonc, and README.md per the files field.",
+      "evidence": [
+        {
+          "resource": "repo://.gitignore",
+          "version": "repo-file-v1:sha256:9b7976aa05b51f989b1d27f92a1d7970d981f26cdcba6410b6c9e94bd1169ae2"
+        },
+        {
+          "resource": "repo://package.json#L12-L21",
+          "version": "repo-lines-v1:sha256:2d01e2d41a59e33cf1e368b07bb877dc8201d40b1e90861f8fe83b4654ad4aa0:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA2NDZjMGJmMDM5NTI4MWMwY2RiNmI4YWU4YmU1YzRmMDY4ZTdkOTU5NzA5ZDA4ZjY0ZWUwODU4MGYwOThkYjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIxNjg4MTJlZGRjODdmNWUwZTUxZTBiN2EyNTEzOWIwZmYxZDY2ZDRlOWQwMjJiMThlYzE2ZTEzNzZhNWU4ZmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU1NDQxMDU2N2Q0MWMxZTY1MTBhYjRjN2Y3OGM0ZTY2ZTc1OTQ1M2YyNmM4Y2U0YTc0ZWYzZmRmN2FmNTU0ODEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRiZjlmMzA0YzdhODhkZDA4NzNiNDM2NTY1OGQ1NDU1ZWM3YmI0ZmNhOTJkZmU1OTgzNTM5NGQ5ZmMwNGM4YzcifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-13T15:09:12.734Z"
+  }
+}
